@@ -8,9 +8,11 @@
 
     <h1>Halaman Produk</h1>
 
-    <a href="{{ route('admin.produk.create') }}" method="GET" class="btn btn-primary mb-3">create</a>
+    @can('create', App\Models\Produk::class)
+        <a href="{{ route('produk.create') }}" method="GET" class="btn btn-primary mb-3">create</a>
+    @endcan
 
-    <form action="{{ route('admin.produk.index') }}" method="GET" class="mb-3">
+    <form action="{{ route('produk.index') }}" method="GET" class="mb-3">
         <div class="input-group">
             <input type="text" name="search" value="" class="form-control" placeholder="Search nama produk">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
@@ -35,22 +37,26 @@
                 <tr>
                     <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
                     <td>{{ $product->user->name }}</td>
-                    <td><img src="{{ asset('storage/'.$product->foto) }}" width="100" class="img-thumbnail"></td>
+                    <td><img src="{{ asset('storage/' . $product->foto) }}" width="100" class="img-thumbnail"></td>
                     <td>{{ $product->nama }}</td>
                     <td>{{ $product->harga_beli }}</td>
                     <td>{{ $product->harga_jual }}</td>
                     <td>{{ $product->stok }}</td>
                     <td class="d-flex gap-1">
-                        <a href="{{ route('admin.produk.edit', $product) }}" class="btn btn-warning">Edit</a>
+                        @can('update', $product)
+                            <a href="{{ route('produk.edit', $product) }}" class="btn btn-warning">Edit</a>
+                        @endcan
                         ||
-                        <form action="{{ route('admin.produk.destroy', $product) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin menghapus user ini?')">
-                                Hapus
-                            </button>
-                        </form>
+                        @can('delete', $product)
+                            <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger"
+                                    onclick="return confirm('Apakah anda yakin menghapus user ini?')">
+                                    Hapus
+                                </button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
             @empty

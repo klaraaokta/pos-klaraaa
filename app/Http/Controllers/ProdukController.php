@@ -18,6 +18,8 @@ class ProdukController extends Controller
      */
     public function index(SearchRequest $request)
     {
+        $this->authorize('viewAny', Produk::class);
+
         $keyword = $request->input('search');
 
         if($keyword) {
@@ -40,6 +42,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Produk::class);
+
         return view('produk.create');
     }
 
@@ -48,6 +52,8 @@ class ProdukController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $this->authorize('create', Produk::class);
+
         $dataReq = $request->validated();
 
         $data['user_id'] = Auth::id();
@@ -62,7 +68,7 @@ class ProdukController extends Controller
 
         Produk::create($data);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Product created successfully.');
+        return redirect()->route('produk.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -78,6 +84,8 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
+        $this->authorize('update', $produk);
+
         return view('produk.edit', compact('produk'));
     }
 
@@ -86,6 +94,8 @@ class ProdukController extends Controller
      */
     public function update(UpdateRequest $request, Produk $produk)
     {
+        $this->authorize('update', $produk);
+        
         $dataReq = $request->validated();
 
         $data = [
@@ -112,7 +122,7 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        return redirect()->route('admin.produk.edit', $produk->id)->with('success', 'Product updated successfully.');
+        return redirect()->route('produk.edit', $produk->id)->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -124,6 +134,6 @@ class ProdukController extends Controller
             Storage::disk('public')->delete($produk->foto);
         }
         $produk->delete();
-        return redirect()->route('admin.produk.index')->with('success', 'Produt deleted successfully');
+        return redirect()->route('produk.index')->with('success', 'Produt deleted successfully');
     }
 }
