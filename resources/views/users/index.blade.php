@@ -38,7 +38,7 @@
                         ||
                         <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="d-inline">
                             @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirms('Yakin hapus user ini?')">
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus user ini?')">
                                 Hapus
                             </button>
                         </form>

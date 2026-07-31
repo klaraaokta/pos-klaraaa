@@ -86,4 +86,4 @@
         }
     }
 </script>
-<a href="{{ route('admin.produk.index') }}" class="btn btn-seccondary mt-3">Kembali</a>
+<a href="{{ route('produk.index') }}" class="btn btn-seccondary mt-3">Kembali</a>

@@ -115,8 +115,8 @@
                         onsubmit="return confirm('Yakin ingin checkout?')" class="mt-2">
                         @csrf
                         @method('PUT')
-                        <select name="payment_method" class="form-select mb-2">
-                            <option value="">Pilih Pembayaran</option>
+                        <select name="payment_method" class="form-select mb-2" required>
+                            <option value="" disabled selected>Pilih Pembayaran</option>
                             <option value="CASH">Cash</option>
                             <option value="QRIS">QRIS</option>
                         </select>
@@ -130,7 +130,7 @@
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-outline-danger w-100 mt-2"
-                            {{ $sale->status === 'COMPLETED' ? 'disabed' : '' }}>
+                            {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}>
                             Batal Transaksi
                         </button>
                     </form>
