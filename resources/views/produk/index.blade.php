@@ -9,7 +9,7 @@
     <h1>Halaman Produk</h1>
 
     @can('create', App\Models\Produk::class)
-        <a href="{{ route('produk.create') }}" method="GET" class="btn btn-primary mb-3">create</a>
+        <a href="{{ route('produk.create') }}" method="GET" class="btn btn-primary mb-3">Create</a>
     @endcan
 
     <form action="{{ route('produk.index') }}" method="GET" class="mb-3">

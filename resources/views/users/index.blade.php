@@ -11,7 +11,7 @@
     <div class="users-toolbar">
         <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Create</a>
 
-        <form action="{{ route('admin.users') }}" method="GET" class="users-search">
+        <form action="{{ route('admin.users') }}" method="GET" class="users-search mt-3">
             <div class="input-group">
                 <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Search username or email">
 
