@@ -45,8 +45,8 @@
 
         .section-title {
             display: flex;
+            justify-content: flex-start;
             align-items: center;
-            gap: 0.5rem;
             font-size: 0.8rem;
             font-weight: 700;
             color: #475569;
@@ -55,6 +55,7 @@
             margin-bottom: 1rem;
             padding-bottom: 0.6rem;
             border-bottom: 2px solid #e2e8f0;
+            text-align: left;
         }
 
         .table-subtitle {
@@ -65,54 +66,34 @@
         }
 
         .dashboard-content .card {
-            border: 1px solid #eef0f4;
-            border-left: 3px solid #4f46e5;
-            border-radius: 12px;
-            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            box-shadow: none;
             height: 100%;
-            transition: box-shadow 0.15s ease;
-        }
-
-        .dashboard-content .card:hover {
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
         }
 
         .dashboard-content .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            background-color: #ffffff;
-            border-bottom: none;
-            font-size: 0.76rem;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #64748b;
-            padding: 1.1rem 1.25rem 0.3rem;
-        }
-
-        .dashboard-content .card-header i {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            background-color: #eef2ff;
-            color: #4f46e5;
-            font-size: 0.95rem;
-            flex-shrink: 0;
+            padding: 0.75rem 1.1rem;
         }
 
         .dashboard-content .card-body {
-            padding: 0.3rem 1.25rem 1.35rem;
+            padding: 1rem 1.1rem;
         }
 
         .dashboard-content .card-title {
-            font-size: 1.55rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: #0f172a;
-            letter-spacing: -0.01em;
             margin-bottom: 0;
+        }
+
+        .dashboard-content .card-title.card-price {
+            color: #4f46e5;
         }
 
         /* ---------- Table (default: tablet & up) ---------- */
@@ -194,23 +175,29 @@
             font-size: 0.8rem;
         }
 
-        /* =========================================================
-           RESPONSIVE — TABLET (≤ 991.98px)
-           ========================================================= */
+        .alert-success {
+            background-color: #eef2ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.25rem;
+            margin: 1rem auto 0;
+            max-width: 480px;
+            text-align: center;
+        }
+
         @media (max-width: 991.98px) {
             .dashboard-content {
                 padding: 1.75rem 1rem 3.5rem;
             }
 
             .dashboard-content .card-body {
-                padding: 0.3rem 1rem 1.15rem;
+                padding: 0.85rem 1rem;
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — MOBILE (≤ 767.98px)
-           Card jadi 1 kolom, table jadi stacked
-           ========================================================= */
         @media (max-width: 767.98px) {
             .dashboard-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -225,10 +212,9 @@
             }
 
             .dashboard-content .card-title {
-                font-size: 1.3rem;
+                font-size: 1.15rem;
             }
 
-            /* table jadi stacked card */
             .dashboard-content .table-responsive {
                 border: none;
                 box-shadow: none;
@@ -307,21 +293,21 @@
             <div class="dashboard-section">
                 <div class="row g-3 dashboard-row">
                     <div class="col-md-12">
-                        <h1 class="section-title"><i class="bi bi-graph-up-arrow"></i> Today's Sales</h1>
+                        <h1 class="section-title">Today's Sales</h1>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card">
-                            <div class="card-header"><i class="bi bi-cash-stack"></i> Total Nilai Penjualan Hari Ini</div>
+                            <div class="card-header">Total Nilai Penjualan Hari Ini</div>
                             <div class="card-body">
-                                <h5 class="card-title">Rp {{ number_format($ringkasan['total_penjualan']) }}</h5>
+                                <h5 class="card-title card-price">Rp {{ number_format($ringkasan['total_penjualan']) }}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card">
-                            <div class="card-header"><i class="bi bi-receipt"></i> Jumlah Transaksi Hari Ini</div>
+                            <div class="card-header">Jumlah Transaksi Hari Ini</div>
                             <div class="card-body">
-                                <h5 class="card-title">Rp {{ $ringkasan['total_transaksi'] }}</h5>
+                                <h5 class="card-title">{{ $ringkasan['total_transaksi'] }}</h5>
                             </div>
                         </div>
                     </div>
@@ -331,21 +317,21 @@
             <div class="dashboard-section">
                 <div class="row g-3 dashboard-row">
                     <div class="col-md-12">
-                        <h1 class="section-title"><i class="bi bi-wallet-fill"></i> Cash & Payment Status</h1>
+                        <h1 class="section-title">Cash & Payment Status</h1>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card">
-                            <div class="card-header"><i class="bi bi-wallet2"></i> Total Pembayaran Tunai</div>
+                            <div class="card-header">Total Pembayaran Tunai</div>
                             <div class="card-body">
-                                <h5 class="card-title">Rp {{ number_format($ringkasan['total_cash']) }}</h5>
+                                <h5 class="card-title card-price">Rp {{ number_format($ringkasan['total_cash']) }}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card">
-                            <div class="card-header"><i class="bi bi-credit-card"></i> Total Pembayaran Non-Tunai</div>
+                            <div class="card-header">Total Pembayaran Non-Tunai</div>
                             <div class="card-body">
-                                <h5 class="card-title">Rp {{ number_format($ringkasan['total_non_tunai']) }}</h5>
+                                <h5 class="card-title card-price">Rp {{ number_format($ringkasan['total_non_tunai']) }}</h5>
                             </div>
                         </div>
                     </div>
@@ -356,8 +342,7 @@
         <div class="dashboard-section">
             <div class="row g-4 dashboard-row">
                 <div class="col-md-12">
-                    <h1 class="section-title"><i class="bi bi-exclamation-triangle-fill"></i> Critical Inventory Status
-                    </h1>
+                    <h1 class="section-title">Critical Inventory Status</h1>
                 </div>
                 <div class="col-12 col-md-6">
                     <h3 class="table-subtitle">Daftar Produk Stok Rendah</h3>
@@ -427,7 +412,7 @@
         <div class="dashboard-section">
             <div class="row g-4 dashboard-row">
                 <div class="col-md-12">
-                    <h1 class="section-title"><i class="bi bi-trophy-fill"></i> Best Seller Products</h1>
+                    <h1 class="section-title">Best Seller Products</h1>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive">

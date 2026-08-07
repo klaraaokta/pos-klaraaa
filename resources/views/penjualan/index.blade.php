@@ -14,7 +14,6 @@
             padding: 2rem 1rem 4rem;
         }
 
-        /* ---------- Page header ---------- */
         .penjualan-header {
             display: flex;
             align-items: baseline;
@@ -37,7 +36,6 @@
             color: #94a3b8;
         }
 
-        /* ---------- Alert ---------- */
         .penjualan-page-content .alert-danger {
             background-color: #fef2f2;
             color: #b91c1c;
@@ -49,7 +47,6 @@
             margin-bottom: 1.25rem;
         }
 
-        /* ---------- Toolbar ---------- */
         .penjualan-toolbar {
             display: flex;
             align-items: center;
@@ -108,7 +105,6 @@
             color: #ffffff;
         }
 
-        /* ---------- Table (default: tablet & up) ---------- */
         .penjualan-page-content .table-responsive {
             border: 1px solid #eef0f4;
             border-radius: 12px;
@@ -156,26 +152,22 @@
             font-weight: 500;
         }
 
-        /* Tanggal = info sekunder, redupkan */
         .penjualan-tanggal {
             color: #64748b;
             font-size: 0.82rem;
         }
 
-        /* Kasir = info sekunder */
         .penjualan-kasir {
             color: #94a3b8;
             font-size: 0.82rem;
         }
 
-        /* Total = paling penting di baris ini → paling menonjol */
         .penjualan-total {
             font-weight: 700;
             color: #0f172a;
             font-size: 0.9rem;
         }
 
-        /* ---------- Badge: Metode Pembayaran ---------- */
         .metode-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
@@ -187,7 +179,6 @@
             text-transform: capitalize;
         }
 
-        /* ---------- Badge: Status ---------- */
         .status-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
@@ -217,7 +208,6 @@
             color: #b91c1c;
         }
 
-        /* ---------- Action buttons ---------- */
         .action-group {
             display: flex;
             gap: 0.4rem;
@@ -252,7 +242,6 @@
             color: #ffffff;
         }
 
-        /* ---------- Empty state ---------- */
         .penjualan-empty {
             padding: 3rem 1rem;
             text-align: center;
@@ -265,19 +254,12 @@
             margin-bottom: 0.5rem;
         }
 
-        /* =========================================================
-               RESPONSIVE — TABLET (≤ 991.98px)
-               ========================================================= */
         @media (max-width: 991.98px) {
             .penjualan-page-content {
                 padding: 1.5rem 1rem 3rem;
             }
         }
 
-        /* =========================================================
-               RESPONSIVE — MOBILE (≤ 767.98px)
-               Table jadi stacked card list
-               ========================================================= */
         @media (max-width: 767.98px) {
             .penjualan-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -388,12 +370,27 @@
                 flex: 1;
                 text-align: center;
             }
+
+            .alert-success {
+                background-color: #eef2ff;
+                color: #4338ca;
+                border: 1px solid #c7d2fe;
+                border-radius: 10px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                padding: 0.85rem 1.25rem;
+                margin: 1rem auto 0;
+                max-width: 480px;
+                text-align: center;
+            }
         }
 
-        /* =========================================================
-               RESPONSIVE — SMALL MOBILE (≤ 400px)
-               ========================================================= */
         @media (max-width: 400px) {
+            .penjualan-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
 
             .penjualan-page-content .table tbody td,
             .penjualan-page-content .table tbody th {

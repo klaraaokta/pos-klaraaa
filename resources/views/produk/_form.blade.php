@@ -82,7 +82,6 @@
             margin-top: 0.3rem;
         }
 
-        /* ---------- Foto saat ini ---------- */
         .produk-current-foto {
             display: flex;
             align-items: center;
@@ -112,7 +111,6 @@
             border: 1px solid #eef0f4;
         }
 
-        /* ---------- Upload & Preview row ---------- */
         .produk-form-body .row {
             display: flex;
             gap: 1rem;
@@ -158,7 +156,6 @@
             text-align: center;
         }
 
-        /* ---------- Actions ---------- */
         .produk-form-actions {
             display: flex;
             gap: 0.6rem;
@@ -198,18 +195,25 @@
             color: #334155;
         }
 
-        /* =========================================================
-               RESPONSIVE — TABLET (≤ 991.98px)
-               ========================================================= */
+        .alert-success {
+            background-color: #eef2ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.25rem;
+            margin: 1rem auto 0;
+            max-width: 480px;
+            text-align: center;
+        }
+
         @media (max-width: 991.98px) {
             .produk-form-outer {
                 padding: 1.5rem 1rem;
             }
         }
 
-        /* =========================================================
-               RESPONSIVE — MOBILE (≤ 575.98px)
-               ========================================================= */
         @media (max-width: 575.98px) {
             .produk-form-outer {
                 min-height: auto;
@@ -238,9 +242,6 @@
                 text-align: center;
             }
 
-            /* =========================================================
-       RESPONSIVE — SMALL MOBILE (≤ 400px)
-       ========================================================= */
             @media (max-width: 400px) {
                 .produk-form-header {
                     padding: 0.85rem 1rem;

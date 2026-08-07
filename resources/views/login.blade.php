@@ -101,7 +101,6 @@
             text-align: center;
         }
 
-        /* ---------- MOBILE (≤ 575.98px) ---------- */
         @media (max-width: 575.98px) {
             .login-outer {
                 padding: 1rem 0.85rem;
@@ -116,7 +115,6 @@
             }
         }
 
-        /* ---------- SMALL MOBILE (≤ 360px) ---------- */
         @media (max-width: 360px) {
             .login-card .card-header {
                 padding: 0.85rem 1rem;

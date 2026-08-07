@@ -14,7 +14,6 @@
             padding: 2rem 1rem 4rem;
         }
 
-        /* ---------- Page header ---------- */
         .produk-header {
             display: flex;
             align-items: baseline;
@@ -37,7 +36,6 @@
             color: #94a3b8;
         }
 
-        /* ---------- Toolbar ---------- */
         .produk-toolbar {
             display: flex;
             align-items: center;
@@ -96,7 +94,6 @@
             color: #ffffff;
         }
 
-        /* ---------- Table (default: tablet & up) ---------- */
         .produk-page-content .table-responsive {
             border: 1px solid #eef0f4;
             border-radius: 12px;
@@ -144,19 +141,16 @@
             font-weight: 500;
         }
 
-        /* Nama produk = paling menonjol */
         .produk-nama {
             font-weight: 600;
             color: #0f172a;
         }
 
-        /* User = de-emphasized, info sekunder */
         .produk-user {
             font-size: 0.78rem;
             color: #94a3b8;
         }
 
-        /* ---------- Foto produk ---------- */
         .produk-thumb {
             width: 56px;
             height: 56px;
@@ -166,7 +160,6 @@
             flex-shrink: 0;
         }
 
-        /* ---------- Harga ---------- */
         .harga-beli {
             color: #64748b;
         }
@@ -176,7 +169,6 @@
             color: #4338ca;
         }
 
-        /* ---------- Stok badge ---------- */
         .stok-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
@@ -187,7 +179,6 @@
             color: #4338ca;
         }
 
-        /* ---------- Action buttons ---------- */
         .action-group {
             display: flex;
             gap: 0.4rem;
@@ -216,7 +207,6 @@
             color: #ffffff;
         }
 
-        /* ---------- Empty state ---------- */
         .produk-empty {
             padding: 3rem 1rem;
             text-align: center;
@@ -242,19 +232,12 @@
             text-align: center;
         }
 
-        /* =========================================================
-           RESPONSIVE — TABLET (≤ 991.98px)
-           ========================================================= */
         @media (max-width: 991.98px) {
             .produk-page-content {
                 padding: 1.5rem 1rem 3rem;
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — MOBILE (≤ 767.98px)
-           Table berubah jadi stacked card list
-           ========================================================= */
         @media (max-width: 767.98px) {
             .produk-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -280,7 +263,6 @@
                 max-width: 100%;
             }
 
-            /* matikan border box tabel, kartu yang pegang shadow */
             .produk-page-content .table-responsive {
                 border: none;
                 box-shadow: none;
@@ -328,7 +310,6 @@
                 border-bottom: none;
             }
 
-            /* label kolom pakai data-label */
             .produk-page-content .table tbody td::before,
             .produk-page-content .table tbody th::before {
                 content: attr(data-label);
@@ -340,7 +321,6 @@
                 text-align: left;
             }
 
-            /* nomor urut jadi badge kecil di pojok, bukan baris sendiri */
             .produk-page-content .table tbody th:first-child {
                 justify-content: flex-start;
                 border-bottom: 1px dashed #f1f5f9;
@@ -352,7 +332,6 @@
                 content: "#";
             }
 
-            /* foto & nama disatuin biar rapi */
             .produk-thumb {
                 width: 48px;
                 height: 48px;
@@ -369,9 +348,6 @@
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — SMALL MOBILE (≤ 400px)
-           ========================================================= */
         @media (max-width: 400px) {
             .produk-page-content .table tbody td,
             .produk-page-content .table tbody th {

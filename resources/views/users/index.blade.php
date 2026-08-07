@@ -14,7 +14,6 @@
             padding: 2rem 1rem 4rem;
         }
 
-        /* ---------- Page header ---------- */
         .users-header {
             display: flex;
             align-items: baseline;
@@ -37,7 +36,6 @@
             color: #94a3b8;
         }
 
-        /* ---------- Toolbar ---------- */
         .users-toolbar {
             display: flex;
             align-items: center;
@@ -96,7 +94,6 @@
             color: #ffffff;
         }
 
-        /* ---------- Table (default: tablet & up) ---------- */
         .users-page-content .table-responsive {
             border: 1px solid #eef0f4;
             border-radius: 12px;
@@ -147,19 +144,16 @@
             font-size: 0.78rem;
         }
 
-        /* Nama = paling penting di baris ini → paling menonjol */
         .user-name {
             font-weight: 600;
             color: #0f172a;
         }
 
-        /* Email = info pendukung, bukan yang utama dicari */
         .user-email {
             color: #94a3b8;
             font-size: 0.82rem;
         }
 
-        /* Role = perlu dikenali cepat tapi bukan fokus utama → badge kecil */
         .role-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
@@ -170,7 +164,6 @@
             color: #4338ca;
         }
 
-        /* ---------- Action buttons ---------- */
         .action-group {
             display: flex;
             gap: 0.4rem;
@@ -199,18 +192,25 @@
             color: #ffffff;
         }
 
-        /* =========================================================
-           RESPONSIVE — TABLET (≤ 991.98px)
-           ========================================================= */
+        .alert-success {
+            background-color: #eef2ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.25rem;
+            margin: 1rem auto 0;
+            max-width: 480px;
+            text-align: center;
+        }
+
         @media (max-width: 991.98px) {
             .users-page-content {
                 padding: 1.5rem 1rem 3rem;
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — MOBILE (≤ 767.98px)
-           ========================================================= */
         @media (max-width: 767.98px) {
             .users-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -313,9 +313,6 @@
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — SMALL MOBILE (≤ 400px)
-           ========================================================= */
         @media (max-width: 400px) {
             .users-page-content .table tbody td {
                 flex-direction: column;

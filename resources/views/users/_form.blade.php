@@ -124,14 +124,25 @@
             color: #334155;
         }
 
-        /* ---------- TABLET (≤ 991.98px) ---------- */
+        .alert-success {
+            background-color: #eef2ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.25rem;
+            margin: 1rem auto 0;
+            max-width: 480px;
+            text-align: center;
+        }
+
         @media (max-width: 991.98px) {
             .user-form-outer {
                 padding: 1.5rem 1rem;
             }
         }
 
-        /* ---------- MOBILE (≤ 575.98px) ---------- */
         @media (max-width: 575.98px) {
             .user-form-outer {
                 min-height: auto;
@@ -156,7 +167,6 @@
             }
         }
 
-        /* ---------- SMALL MOBILE (≤ 400px) ---------- */
         @media (max-width: 400px) {
             .user-form-header {
                 padding: 0.85rem 1rem;
@@ -193,9 +203,6 @@
                     <form action="{{ isset($user) ? route('admin.users.update', $user) : route('admin.users.store') }}"
                         method="POST">
                         @csrf
-                        @if (isset($user))
-                            @method('PUT')
-                        @endif
 
                         <div class="mb-3">
                             <label class="form-label">Nama</label>

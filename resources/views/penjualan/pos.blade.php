@@ -33,7 +33,6 @@
             margin-bottom: 1.25rem;
         }
 
-        /* ---------- Card base ---------- */
         .pos-page-content .card {
             border: 1px solid #eef0f4;
             border-radius: 14px;
@@ -41,9 +40,6 @@
             overflow: hidden;
         }
 
-        /* =========================================================
-           KOLOM PRODUK (kiri)
-           ========================================================= */
         .produk-panel-header {
             padding: 0.9rem 1rem 0;
         }
@@ -165,9 +161,6 @@
             border-color: #4338ca;
         }
 
-        /* =========================================================
-           KOLOM KERANJANG (kanan)
-           ========================================================= */
         .keranjang-header {
             padding: 0.9rem 1rem;
             border-bottom: 1px solid #eef0f4;
@@ -244,7 +237,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* ---------- Footer: Total & Checkout (paling penting) ---------- */
         .keranjang-footer {
             background-color: #ffffff;
             border-top: 1px solid #eef0f4;
@@ -286,7 +278,6 @@
             box-shadow: 0 0 0 3px #eef2ff;
         }
 
-        /* Checkout = aksi paling dominan di seluruh halaman */
         .btn-checkout {
             background-color: #16a34a;
             border-color: #16a34a;
@@ -307,7 +298,6 @@
             opacity: 0.5;
         }
 
-        /* Batal Transaksi = aksi destruktif, sengaja diredupkan */
         .btn-batal {
             background-color: transparent;
             border: 1px solid #e2e8f0;
@@ -325,9 +315,19 @@
             color: #dc2626;
         }
 
-        /* =========================================================
-           RESPONSIVE — TABLET (≤ 991.98px)
-           ========================================================= */
+        .alert-success {
+            background-color: #eef2ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.25rem;
+            margin: 1rem auto 0;
+            max-width: 480px;
+            text-align: center;
+        }
+
         @media (max-width: 991.98px) {
             .pos-page-content {
                 padding: 1.25rem 1rem 3rem;
@@ -338,11 +338,6 @@
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — MOBILE (≤ 767.98px)
-           Kolom produk & keranjang jadi stack (produk dulu, baru keranjang)
-           Table keranjang jadi card list
-           ========================================================= */
         @media (max-width: 767.98px) {
             .pos-page-content {
                 padding: 1rem 0.75rem 3rem;
@@ -352,11 +347,11 @@
                 font-size: 1.15rem;
             }
 
-            .row > [class*="col-"] {
+            .row>[class*="col-"] {
                 margin-bottom: 1rem;
             }
 
-            .row > [class*="col-"]:last-child {
+            .row>[class*="col-"]:last-child {
                 margin-bottom: 0;
             }
 
@@ -372,7 +367,6 @@
                 font-size: 0.72rem;
             }
 
-            /* Table keranjang -> card list */
             .pos-page-content .table {
                 border: none;
             }
@@ -434,9 +428,6 @@
             }
         }
 
-        /* =========================================================
-           RESPONSIVE — SMALL MOBILE (≤ 400px)
-           ========================================================= */
         @media (max-width: 400px) {
             .produk-item-form {
                 flex-wrap: wrap;
@@ -485,8 +476,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                                <button
-                                    class="produk-item-btn {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
+                                <button class="produk-item-btn {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
                                     <img src="{{ asset('storage/' . $product->foto) }}" alt="{{ $product->nama }}"
                                         class="produk-item-thumb">
                                     <div>
@@ -532,8 +522,7 @@
                                     <td data-label="Produk" class="cart-item-nama">{{ $item->produk->nama }}</td>
                                     <td data-label="Harga">Rp {{ number_format($item->produk->harga_jual) }}</td>
                                     <td data-label="Qty">
-                                        <form method="POST"
-                                            action="{{ route('itempenjualan.update', $item->id) }}">
+                                        <form method="POST" action="{{ route('itempenjualan.update', $item->id) }}">
                                             @csrf @method('PUT')
                                             <input type="number" name="quantity" value="{{ $item->kuantitas }}"
                                                 class="form-control form-control-sm cart-qty-input">
@@ -543,8 +532,7 @@
                                         {{ number_format($item->subtotal) }}</td>
                                     <td data-label="Aksi">
                                         @can('delete', $item)
-                                            <form method="POST"
-                                                action="{{ route('itempenjualan.destroy', $item->id) }}">
+                                            <form method="POST" action="{{ route('itempenjualan.destroy', $item->id) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn cart-item-hapus">Hapus</button>
@@ -581,8 +569,7 @@
                                 <option value="CASH">Cash</option>
                                 <option value="QRIS">QRIS</option>
                             </select>
-                            <button
-                                class="btn btn-checkout w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
+                            <button class="btn btn-checkout w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
                                 <i class="bi bi-check-circle-fill"></i> Checkout
                             </button>
                         </form>
@@ -592,8 +579,7 @@
                                 onsubmit="return confirm('Yakin ingin membatalkan transaksi')">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-batal w-100"
-                                    {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}>
+                                <button class="btn btn-batal w-100" {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}>
                                     Batal Transaksi
                                 </button>
                             </form>
