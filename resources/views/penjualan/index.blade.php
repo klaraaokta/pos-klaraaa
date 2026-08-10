@@ -370,19 +370,6 @@
                 flex: 1;
                 text-align: center;
             }
-
-            .alert-success {
-                background-color: #eef2ff;
-                color: #4338ca;
-                border: 1px solid #c7d2fe;
-                border-radius: 10px;
-                font-size: 0.875rem;
-                font-weight: 500;
-                padding: 0.85rem 1.25rem;
-                margin: 1rem auto 0;
-                max-width: 480px;
-                text-align: center;
-            }
         }
 
         @media (max-width: 400px) {
@@ -470,7 +457,7 @@
                                     @can('view', $sale)
                                         <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-sm btn-warning">Edit</a>
                                     @endcan
-                                    <a href="" class="btn btn-primary">Detail</a>
+                                    <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-primary">Detail</a>
                                     @can('delete', $sale)
                                         <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
                                             @csrf

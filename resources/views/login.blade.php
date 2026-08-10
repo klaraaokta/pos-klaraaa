@@ -88,19 +88,6 @@
             border-color: #4338ca;
         }
 
-        .alert-success {
-            background-color: #eef2ff;
-            color: #4338ca;
-            border: 1px solid #c7d2fe;
-            border-radius: 10px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.85rem 1.25rem;
-            margin: 1rem auto 0;
-            max-width: 480px;
-            text-align: center;
-        }
-
         @media (max-width: 575.98px) {
             .login-outer {
                 padding: 1rem 0.85rem;
