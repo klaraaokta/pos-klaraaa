@@ -467,7 +467,8 @@
                                                 Hapus
                                             </button>
                                         </form>
-                                    @endcan
+                          
+                                        @endcan
                                 </div>
                             </td>
                         </tr>

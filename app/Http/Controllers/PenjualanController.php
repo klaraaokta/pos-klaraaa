@@ -84,11 +84,12 @@ class PenjualanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Penjualan $penjualan)
     {
-        //
-    }
+        $penjualan->load('itemPenjualan.produk', 'user');
 
+        return view('penjualan.detail', ['sale' => $penjualan]);
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -97,7 +98,7 @@ class PenjualanController extends Controller
         $sale = $penjualan;
 
         abort_if($sale->status === 'COMPLETED', 403);
-        
+
         $sale->load('itemPenjualan');
         $products = Produk::orderBy('nama')->get();
         $mode = 'edit';

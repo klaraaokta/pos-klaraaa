@@ -65,35 +65,60 @@
             margin-bottom: 0.75rem;
         }
 
+        /* ---------- Stat card: base ---------- */
         .dashboard-content .card {
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            box-shadow: none;
+            border: 1px solid #eef0f4;
+            border-left: 3px solid #4f46e5;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
             height: 100%;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .dashboard-content .card:hover {
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
         }
 
         .dashboard-content .card-header {
-            background-color: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.8rem;
+            background-color: #ffffff;
+            border-bottom: none;
+            font-size: 0.78rem;
             font-weight: 600;
             color: #64748b;
-            padding: 0.75rem 1.1rem;
+            padding: 1.1rem 1.25rem 0.2rem;
         }
 
         .dashboard-content .card-body {
-            padding: 1rem 1.1rem;
+            padding: 0.3rem 1.25rem 1.35rem;
         }
 
         .dashboard-content .card-title {
-            font-size: 1.35rem;
+            font-size: 1.55rem;
             font-weight: 700;
             color: #0f172a;
+            letter-spacing: -0.01em;
             margin-bottom: 0;
+            font-variant-numeric: tabular-nums;
         }
 
         .dashboard-content .card-title.card-price {
             color: #4f46e5;
+        }
+
+        /* ---------- Stat card: featured (metrik paling penting) ---------- */
+        .dashboard-content .card.card-featured {
+            border-left-width: 5px;
+            background-color: #fbfbff;
+        }
+
+        .card-featured .card-header {
+            background-color: transparent;
+            font-weight: 700;
+            color: #4338ca;
+        }
+
+        .card-featured .card-title {
+            font-size: 1.7rem;
         }
 
         /* ---------- Table (default: tablet & up) ---------- */
@@ -175,16 +200,22 @@
             font-size: 0.8rem;
         }
 
+        /* =========================================================
+               RESPONSIVE — TABLET (≤ 991.98px)
+               ========================================================= */
         @media (max-width: 991.98px) {
             .dashboard-content {
                 padding: 1.75rem 1rem 3.5rem;
             }
 
             .dashboard-content .card-body {
-                padding: 0.85rem 1rem;
+                padding: 0.3rem 1rem 1.15rem;
             }
         }
 
+        /* =========================================================
+               RESPONSIVE — MOBILE (≤ 767.98px)
+               ========================================================= */
         @media (max-width: 767.98px) {
             .dashboard-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -199,7 +230,11 @@
             }
 
             .dashboard-content .card-title {
-                font-size: 1.15rem;
+                font-size: 1.3rem;
+            }
+
+            .card-featured .card-title {
+                font-size: 1.45rem;
             }
 
             .dashboard-content .table-responsive {
@@ -283,7 +318,7 @@
                         <h1 class="section-title">Today's Sales</h1>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="card">
+                        <div class="card card-featured">
                             <div class="card-header">Total Nilai Penjualan Hari Ini</div>
                             <div class="card-body">
                                 <h5 class="card-title card-price">Rp {{ number_format($ringkasan['total_penjualan']) }}</h5>
