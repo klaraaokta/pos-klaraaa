@@ -102,7 +102,7 @@
             font-family: monospace;
         }
 
-        /* Kasir = info sekunder, diredupkan (konsisten sama halaman list Penjualan) */
+        /* Kasir = info sekunder, diredupkan */
         .detail-info-value.detail-kasir {
             font-weight: 500;
             color: #94a3b8;
@@ -271,8 +271,8 @@
         }
 
         /* =========================================================
-             RESPONSIVE — TABLET & window sempit (≤ 991.98px)
-             ========================================================= */
+               RESPONSIVE — TABLET & window sempit (≤ 991.98px)
+               ========================================================= */
         @media (max-width: 991.98px) {
             .detail-page-content {
                 padding: 1.5rem 1rem 3rem;
@@ -280,8 +280,8 @@
         }
 
         /* =========================================================
-             RESPONSIVE — MOBILE (≤ 575.98px)
-             ========================================================= */
+               RESPONSIVE — MOBILE (≤ 575.98px)
+               ========================================================= */
         @media (max-width: 575.98px) {
             .detail-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -334,13 +334,12 @@
         }
 
         /* =========================================================
-             PRINT MEDIA QUERY (Tambahan untuk menyembunyikan navbar)
-             ========================================================= */
+               PRINT — sembunyikan elemen yang gak perlu di hasil cetak
+               ========================================================= */
         @media print {
-            nav, 
-            .navbar, 
-            .btn-back, 
-            .btn, 
+
+            .pos-navbar,
+            .detail-header .btn-back,
             .detail-actions {
                 display: none !important;
             }
@@ -350,14 +349,13 @@
             }
 
             .detail-page-content {
-                max-width: 100% !important;
                 padding: 0 !important;
-                margin: 0 !important;
+                max-width: 100% !important;
             }
 
             .detail-card {
-                border: none !important;
                 box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
             }
         }
     </style>
@@ -422,7 +420,7 @@
                         <div class="detail-item-meta">
                             {{ $item->kuantitas }} x Rp {{ number_format($item->harga_satuan) }}
                         </div>
-                    </div>                                                                                 
+                    </div>
                     <div class="detail-item-subtotal">
                         Rp {{ number_format($item->subtotal) }}
                     </div>

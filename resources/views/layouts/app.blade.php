@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Isi tittle yang kita kirimkan dari views lain-->
     <title>@yield('title')</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- memanggil link bootstrap -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 
     <style>
         .alert-success {
@@ -26,18 +29,14 @@
             text-align: center;
         }
     </style>
-
-    <!-- memanggil link bootstrap -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('styles')
 </head>
 
 <body>
 
     <div class="container">
 
-        @if(session('success'))
-            <div class="alert alert-success">
+        @if (session('success'))
+            <div class="alert alert-success" id="successAlert">
                 {{ session('success') }}
             </div>
         @endif
@@ -45,6 +44,18 @@
         <!-- Isi content yang kita kirimkan dari views lain-->
         @yield('content')
     </div>
+
+    <script>
+        // Auto-hilang setelah 4 detik
+        const successAlert = document.getElementById('successAlert');
+        if (successAlert) {
+            setTimeout(() => {
+                successAlert.style.transition = 'opacity 0.4s ease';
+                successAlert.style.opacity = '0';
+                setTimeout(() => successAlert.remove(), 400);
+            }, 4000);
+        }
+    </script>
 
 </body>
 
