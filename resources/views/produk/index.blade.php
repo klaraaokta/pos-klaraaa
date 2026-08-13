@@ -336,6 +336,7 @@
         }
 
         @media (max-width: 400px) {
+
             .produk-page-content .table tbody td,
             .produk-page-content .table tbody th {
                 flex-direction: column;
@@ -410,12 +411,10 @@
                             <td data-label="Aksi">
                                 <div class="action-group">
                                     @can('update', $product)
-                                        <a href="{{ route('produk.edit', $product) }}"
-                                            class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-warning">Edit</a>
                                     @endcan
                                     @can('delete', $product)
-                                        <form action="{{ route('produk.destroy', $product) }}" method="POST"
-                                            class="d-inline">
+                                        <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger"

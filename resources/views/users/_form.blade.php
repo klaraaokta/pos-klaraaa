@@ -176,8 +176,6 @@
 
 @section('content')
 
-    @include('layouts.navbar')
-
     <div class="user-form-outer">
         <div class="user-form-wrapper">
             <div class="user-form-card">

@@ -271,8 +271,8 @@
         }
 
         /* =========================================================
-               RESPONSIVE — TABLET & window sempit (≤ 991.98px)
-               ========================================================= */
+             RESPONSIVE — TABLET & window sempit (≤ 991.98px)
+             ========================================================= */
         @media (max-width: 991.98px) {
             .detail-page-content {
                 padding: 1.5rem 1rem 3rem;
@@ -280,8 +280,8 @@
         }
 
         /* =========================================================
-               RESPONSIVE — MOBILE (≤ 575.98px)
-               ========================================================= */
+             RESPONSIVE — MOBILE (≤ 575.98px)
+             ========================================================= */
         @media (max-width: 575.98px) {
             .detail-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -330,6 +330,34 @@
             .detail-actions .btn-print {
                 width: 100%;
                 text-align: center;
+            }
+        }
+
+        /* =========================================================
+             PRINT MEDIA QUERY (Tambahan untuk menyembunyikan navbar)
+             ========================================================= */
+        @media print {
+            nav, 
+            .navbar, 
+            .btn-back, 
+            .btn, 
+            .detail-actions {
+                display: none !important;
+            }
+
+            body {
+                background-color: #ffffff !important;
+            }
+
+            .detail-page-content {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .detail-card {
+                border: none !important;
+                box-shadow: none !important;
             }
         }
     </style>
@@ -394,7 +422,7 @@
                         <div class="detail-item-meta">
                             {{ $item->kuantitas }} x Rp {{ number_format($item->harga_satuan) }}
                         </div>
-                    </div>
+                    </div>                                                                                 
                     <div class="detail-item-subtotal">
                         Rp {{ number_format($item->subtotal) }}
                     </div>

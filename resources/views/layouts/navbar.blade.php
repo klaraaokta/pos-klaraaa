@@ -36,7 +36,6 @@
             gap: 0.25rem;
         }
 
-        /* ---------- Nav link: flat, no box, underline indicator ---------- */
         .pos-navbar .nav-link {
             position: relative;
             font-size: 0.875rem;
@@ -89,7 +88,6 @@
             box-shadow: 0 0 0 3px var(--pos-primary-soft);
         }
 
-        /* ---------- Logout: ghost button ---------- */
         .pos-navbar .btn-danger {
             font-size: 0.85rem;
             font-weight: 500;
@@ -111,7 +109,6 @@
             transition: height 0.25s ease;
         }
 
-        /* ---------- TABLET (≤ 991.98px) ---------- */
         @media (max-width: 991.98px) {
             .pos-navbar .navbar-collapse {
                 margin-top: 0.75rem;
@@ -128,8 +125,6 @@
                 padding: 0.6rem 0.75rem !important;
             }
 
-            /* di mobile, underline agak susah dilihat karena full-width,
-                   jadi pas collapse dibuka pakai indikator garis kiri sebagai gantinya */
             .pos-navbar .nav-link::after {
                 display: none;
             }
@@ -153,7 +148,6 @@
             }
         }
 
-        /* ---------- MOBILE (≤ 575.98px) ---------- */
         @media (max-width: 575.98px) {
             .pos-navbar {
                 margin: 0.6rem 0.6rem 0;
@@ -170,7 +164,6 @@
             }
         }
 
-        /* ---------- SMALL MOBILE (≤ 360px) ---------- */
         @media (max-width: 360px) {
             .pos-navbar {
                 margin: 0.5rem 0.4rem 0;
@@ -193,10 +186,12 @@
                     <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" aria-current="page"
-                        href="{{ route('admin.users') }}">Users</a>
-                </li>
+                @can('viewAny', App\Models\User::class)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('admin.users') }}">Users</a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('produk.index') }}">Produk</a>
