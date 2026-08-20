@@ -192,10 +192,12 @@
                             href="{{ route('admin.users') }}">Users</a>
                     </li>
                 @endcan
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('jenis*') ? 'active' : '' }}" aria-current="page"
-                        href="{{ route('jenis.index') }}">Jenis</a>
-                </li>
+                @can('viewAny', App\Models\User::class)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('jenis*') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('jenis.index') }}">Jenis</a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('produk.index') }}">Produk</a>
