@@ -26,6 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2040',
             'name' => 'required|string|max:255',
+            'jenis_id' => 'nullable|exists:jenis,id',
             'purchase_price' => 'required|integer|min:0',
             'selling_price' => 'required|integer|min:0',
             'stock' => 'required|integer|min:0',
@@ -40,6 +41,7 @@ class StoreRequest extends FormRequest
             'foto.mimes'        => 'Extensi gambar harus JPG, JPEG, PNG.',
             'foto.max'          => 'Maksimal ukuran gambar 2MB.',
             'name.required'     => 'Nama wajib diisi.',
+            'jenis_id.exists'   => 'Jenis yang dipilih tidak valid.',
             'email.email'       => 'Format email tidak valid.',
             'purchase_price.required'  => 'purchase price wajib diisi.',
             'purchase_price.integer'   => 'purchase price harus diisi bilangan bulat.',

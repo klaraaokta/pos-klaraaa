@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('tittle', 'Produk')
+@section('tittle', 'Jenis')
 
 @push('styles')
     <style>
@@ -8,13 +8,13 @@
             background-color: #f8fafc;
         }
 
-        .produk-page-content {
+        .jenis-page-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem 4rem;
         }
 
-        .produk-header {
+        .jenis-header {
             display: flex;
             align-items: baseline;
             gap: 0.6rem;
@@ -30,13 +30,13 @@
             margin-bottom: 0;
         }
 
-        .produk-count {
+        .jenis-count {
             font-size: 0.85rem;
             font-weight: 500;
             color: #94a3b8;
         }
 
-        .produk-toolbar {
+        .jenis-toolbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,7 +45,7 @@
             flex-wrap: wrap;
         }
 
-        .produk-toolbar .btn-primary {
+        .jenis-toolbar .btn-primary {
             background-color: #4f46e5;
             border-color: #4f46e5;
             font-size: 0.85rem;
@@ -56,45 +56,45 @@
             order: 2;
         }
 
-        .produk-toolbar .btn-primary:hover {
+        .jenis-toolbar .btn-primary:hover {
             background-color: #4338ca;
             border-color: #4338ca;
         }
 
-        .produk-search {
+        .jenis-search {
             flex: 1;
             min-width: 220px;
             max-width: 340px;
             order: 1;
         }
 
-        .produk-search .form-control {
+        .jenis-search .form-control {
             font-size: 0.82rem;
             border: 1px solid #e2e8f0;
             background-color: #f8fafc;
             padding: 0.5rem 0.85rem;
         }
 
-        .produk-search .form-control:focus {
+        .jenis-search .form-control:focus {
             border-color: #4f46e5;
             background-color: #ffffff;
             box-shadow: 0 0 0 3px #eef2ff;
         }
 
-        .produk-search .btn-outline-secondary {
+        .jenis-search .btn-outline-secondary {
             font-size: 0.82rem;
             border-color: #e2e8f0;
             background-color: #f8fafc;
             color: #94a3b8;
         }
 
-        .produk-search .btn-outline-secondary:hover {
+        .jenis-search .btn-outline-secondary:hover {
             background-color: #4f46e5;
             border-color: #4f46e5;
             color: #ffffff;
         }
 
-        .produk-page-content .table-responsive {
+        .jenis-page-content .table-responsive {
             border: 1px solid #eef0f4;
             border-radius: 12px;
             overflow: hidden;
@@ -102,12 +102,12 @@
             box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
         }
 
-        .produk-page-content .table {
+        .jenis-page-content .table {
             font-size: 0.85rem;
             margin-bottom: 0;
         }
 
-        .produk-page-content .table thead th {
+        .jenis-page-content .table thead th {
             background-color: #f8fafc;
             color: #64748b;
             font-weight: 600;
@@ -119,79 +119,44 @@
             white-space: nowrap;
         }
 
-        .produk-page-content .table tbody td,
-        .produk-page-content .table tbody th {
-            padding: 0.7rem 1rem;
+        .jenis-page-content .table thead th:first-child {
+            width: 48px;
+            color: #cbd5e1;
+        }
+
+        .jenis-page-content .table tbody td {
+            padding: 0.75rem 1rem;
             vertical-align: middle;
             color: #334155;
             border-bottom: 1px solid #f8fafc;
         }
 
-        .produk-page-content .table tbody tr:last-child td {
+        .jenis-page-content .table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .produk-page-content .table tbody tr:hover {
+        .jenis-page-content .table tbody tr:hover {
             background-color: #f8fafc;
         }
 
-        .produk-page-content .table tbody th:first-child {
+        .jenis-page-content .table tbody td:first-child {
             color: #cbd5e1;
             font-size: 0.78rem;
-            font-weight: 500;
         }
 
-        .produk-nama {
+        .jenis-nama {
             font-weight: 600;
             color: #0f172a;
         }
 
-        .produk-user {
-            font-size: 0.78rem;
-            color: #94a3b8;
-        }
-
-        .produk-thumb {
-            width: 56px;
-            height: 56px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #eef0f4;
-            flex-shrink: 0;
-        }
-
-        .harga-beli {
-            color: #64748b;
-        }
-
-        .harga-jual {
-            font-weight: 600;
-            color: #4338ca;
-        }
-
-        .stok-badge {
-            display: inline-block;
-            padding: 0.2rem 0.65rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background-color: #eef2ff;
-            color: #4338ca;
-        }
-
-        .jenis-badge {
+        .jenis-count-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
             border-radius: 999px;
             font-size: 0.72rem;
             font-weight: 700;
-            background-color: #f1f5f9;
-            color: #475569;
-        }
-
-        .jenis-kosong {
-            font-size: 0.78rem;
-            color: #cbd5e1;
+            background-color: #eef2ff;
+            color: #4338ca;
         }
 
         .action-group {
@@ -222,26 +187,26 @@
             color: #ffffff;
         }
 
-        .produk-empty {
+        .jenis-empty {
             padding: 3rem 1rem;
             text-align: center;
             color: #94a3b8;
         }
 
-        .produk-empty i {
+        .jenis-empty i {
             font-size: 2rem;
             display: block;
             margin-bottom: 0.5rem;
         }
 
         @media (max-width: 991.98px) {
-            .produk-page-content {
+            .jenis-page-content {
                 padding: 1.5rem 1rem 3rem;
             }
         }
 
         @media (max-width: 767.98px) {
-            .produk-page-content {
+            .jenis-page-content {
                 padding: 1.25rem 0.85rem 3rem;
             }
 
@@ -249,44 +214,44 @@
                 font-size: 1.25rem;
             }
 
-            .produk-toolbar {
+            .jenis-toolbar {
                 flex-direction: column;
                 align-items: stretch;
             }
 
-            .produk-toolbar .btn-primary {
+            .jenis-toolbar .btn-primary {
                 order: 1;
                 width: 100%;
                 text-align: center;
             }
 
-            .produk-search {
+            .jenis-search {
                 order: 2;
                 max-width: 100%;
             }
 
-            .produk-page-content .table-responsive {
+            .jenis-page-content .table-responsive {
                 border: none;
                 box-shadow: none;
                 background-color: transparent;
                 overflow: visible;
             }
 
-            .produk-page-content .table {
+            .jenis-page-content .table {
                 border: none;
             }
 
-            .produk-page-content .table thead {
+            .jenis-page-content .table thead {
                 display: none;
             }
 
-            .produk-page-content .table tbody {
+            .jenis-page-content .table tbody {
                 display: flex;
                 flex-direction: column;
                 gap: 0.75rem;
             }
 
-            .produk-page-content .table tbody tr {
+            .jenis-page-content .table tbody tr {
                 display: flex;
                 flex-direction: column;
                 background-color: #ffffff;
@@ -296,8 +261,7 @@
                 padding: 0.9rem 1rem;
             }
 
-            .produk-page-content .table tbody td,
-            .produk-page-content .table tbody th {
+            .jenis-page-content .table tbody td {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -307,13 +271,11 @@
                 text-align: right;
             }
 
-            .produk-page-content .table tbody tr td:last-child,
-            .produk-page-content .table tbody tr th:last-child {
+            .jenis-page-content .table tbody tr td:last-child {
                 border-bottom: none;
             }
 
-            .produk-page-content .table tbody td::before,
-            .produk-page-content .table tbody th::before {
+            .jenis-page-content .table tbody td::before {
                 content: attr(data-label);
                 font-size: 0.7rem;
                 font-weight: 700;
@@ -323,20 +285,14 @@
                 text-align: left;
             }
 
-            .produk-page-content .table tbody th:first-child {
+            .jenis-page-content .table tbody td:first-child {
                 justify-content: flex-start;
-                border-bottom: 1px dashed #f1f5f9;
                 font-weight: 700;
                 color: #4f46e5;
             }
 
-            .produk-page-content .table tbody th:first-child::before {
+            .jenis-page-content .table tbody td:first-child::before {
                 content: "#";
-            }
-
-            .produk-thumb {
-                width: 48px;
-                height: 48px;
             }
 
             .action-group {
@@ -351,18 +307,11 @@
         }
 
         @media (max-width: 400px) {
-
-            .produk-page-content .table tbody td,
-            .produk-page-content .table tbody th {
+            .jenis-page-content .table tbody td {
                 flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
                 gap: 0.15rem;
-            }
-
-            .produk-page-content .table tbody td::before,
-            .produk-page-content .table tbody th::before {
-                text-align: left;
             }
         }
     </style>
@@ -372,28 +321,26 @@
 
     @include('layouts.navbar')
 
-    <div class="produk-page-content">
-        <div class="produk-header">
-            <h1 class="page-title">Produk</h1>
-            <span class="produk-count">{{ $products->total() }} produk terdaftar</span>
+    <div class="jenis-page-content">
+        <div class="jenis-header">
+            <h1 class="page-title">Jenis Produk</h1>
+            <span class="jenis-count">{{ $jenis->total() }} jenis terdaftar</span>
         </div>
 
-        <div class="produk-toolbar">
-            <form action="{{ route('produk.index') }}" method="GET" class="produk-search">
+        <div class="jenis-toolbar">
+            <form action="{{ route('jenis.index') }}" method="GET" class="jenis-search">
                 <div class="input-group">
                     <input type="text" name="search" value="{{ request('search') }}" class="form-control"
-                        placeholder="Cari nama produk...">
+                        placeholder="Cari jenis...">
                     <button class="btn btn-outline-secondary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
             </form>
 
-            @can('create', App\Models\Produk::class)
-                <a href="{{ route('produk.create') }}" class="btn btn-primary">
-                    <i class="bi bi-plus-lg"></i> Tambah Produk
-                </a>
-            @endcan
+            <a href="{{ route('jenis.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Tambah Jenis
+            </a>
         </div>
 
         <div class="table-responsive">
@@ -401,61 +348,39 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Jenis</th>
-                        <th scope="col">Harga Beli</th>
-                        <th scope="col">Harga Jual</th>
-                        <th scope="col">Stok</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Nama Jenis</th>
+                        <th scope="col">Jumlah Produk</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($products as $product)
+                    @forelse ($jenis as $item)
                         <tr>
-                            <th scope="row" data-label="#">{{ $products->firstItem() + $loop->index }}</th>
-                            <td data-label="Foto">
-                                <img src="{{ asset('storage/' . $product->foto) }}" class="produk-thumb"
-                                    alt="{{ $product->nama }}">
+                            <td data-label="#">{{ $jenis->firstItem() + $loop->index }}</td>
+                            <td data-label="Nama Jenis" class="jenis-nama">{{ $item->nama }}</td>
+                            <td data-label="Jumlah Produk">
+                                <span class="jenis-count-badge">{{ $item->produk->count() }}</span>
                             </td>
-                            <td data-label="Nama" class="produk-nama">{{ $product->nama }}</td>
-                            <td data-label="Jenis">
-                                @if ($product->jenis)
-                                    <span class="jenis-badge">{{ $product->jenis->nama }}</span>
-                                @else
-                                    <span class="jenis-kosong">-</span>
-                                @endif
-                            </td>
-                            <td data-label="Harga Beli" class="harga-beli">Rp {{ number_format($product->harga_beli) }}</td>
-                            <td data-label="Harga Jual" class="harga-jual">Rp {{ number_format($product->harga_jual) }}
-                            </td>
-                            <td data-label="Stok"><span class="stok-badge">{{ $product->stok }}</span></td>
-                            <td data-label="User" class="produk-user">{{ $product->user->name }}</td>
                             <td data-label="Aksi">
                                 <div class="action-group">
-                                    @can('update', $product)
-                                        <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    @endcan
-                                    @can('delete', $product)
-                                        <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Apakah anda yakin menghapus produk ini?')">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    @endcan
+                                    <a href="{{ route('jenis.edit', $item) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('jenis.destroy', $item) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Yakin hapus jenis ini?')">
+                                            Hapus
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="9">
-                                <div class="produk-empty">
-                                    <i class="bi bi-box-seam"></i>
-                                    Data produk tidak tersedia
+                            <td colspan="4">
+                                <div class="jenis-empty">
+                                    <i class="bi bi-tags"></i>
+                                    Belum ada jenis produk
                                 </div>
                             </td>
                         </tr>
@@ -464,7 +389,7 @@
             </table>
         </div>
 
-        {{ $products->links() }}
+        {{ $jenis->links() }}
     </div>
 
 @endsection

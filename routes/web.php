@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemPenjualanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JenisController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 
@@ -34,5 +35,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/produk', ProdukController::class);
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);
+        Route::resource('/jenis', JenisController::class);
     });
 });

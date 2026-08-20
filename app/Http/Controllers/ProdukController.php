@@ -6,6 +6,7 @@ use App\Http\Requests\Produk\StoreRequest;
 use App\Http\Requests\Produk\UpdateRequest;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\User\StoreRequest as UserStoreRequest;
+use App\Models\Jenis;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,19 +23,18 @@ class ProdukController extends Controller
 
         $keyword = $request->input('search');
 
-        if($keyword) {
+        if ($keyword) {
             $products = Produk::when($keyword, function ($query) use ($keyword) {
                 $query->where('nama', 'like', '%' . $keyword . '%');
             })
-            ->orderBy('nama')
-            ->paginate(10)
-            ->withQueryString();
+                ->orderBy('nama')
+                ->paginate(10)
+                ->withQueryString();
         } else {
-        $products = Produk::latest()->paginate(10)->withQueryString();
-    }
+            $products = Produk::latest()->paginate(10)->withQueryString();
+        }
 
-     return view('produk.index', compact('products'));
-
+        return view('produk.index', compact('products'));
     }
 
     /**
@@ -44,7 +44,9 @@ class ProdukController extends Controller
     {
         $this->authorize('create', Produk::class);
 
-        return view('produk.create');
+        $jenis = Jenis::all();
+
+        return view('produk.create', compact('jenis'));
     }
 
     /**
@@ -57,6 +59,7 @@ class ProdukController extends Controller
         $dataReq = $request->validated();
 
         $data['user_id'] = Auth::id();
+        $data['jenis_id'] = $dataReq['jenis_id'] ?? null;
         $data['nama'] = $dataReq['name'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
@@ -86,7 +89,9 @@ class ProdukController extends Controller
     {
         $this->authorize('update', $produk);
 
-        return view('produk.edit', compact('produk'));
+        $jenis = Jenis::all();
+
+        return view('produk.edit', compact('produk', 'jenis'));
     }
 
     /**
@@ -95,19 +100,20 @@ class ProdukController extends Controller
     public function update(UpdateRequest $request, Produk $produk)
     {
         $this->authorize('update', $produk);
-        
+
         $dataReq = $request->validated();
 
         $data = [
-        'user_id'      => Auth::id(),
-        'nama'         => $dataReq['name'],
-        'harga_beli'   => $dataReq['purchase_price'],
-        'harga_jual'   => $dataReq['selling_price'],
-        'stok'         => $dataReq['stock'],
+            'user_id'      => Auth::id(),
+            'jenis_id'     => $dataReq['jenis_id'] ?? null,
+            'nama'         => $dataReq['name'],
+            'harga_beli'   => $dataReq['purchase_price'],
+            'harga_jual'   => $dataReq['selling_price'],
+            'stok'         => $dataReq['stock'],
         ];
 
         // Jika upload foto baru
-        if ($request ->hasFile('foto')) {
+        if ($request->hasFile('foto')) {
 
             // Hapus foto lama (jika ada & memang tersimpan)
             if (

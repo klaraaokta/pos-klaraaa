@@ -193,6 +193,10 @@
                     </li>
                 @endcan
                 <li class="nav-item">
+                    <a class="nav-link {{ Request::is('jenis*') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('jenis.index') }}">Jenis</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('produk.index') }}">Produk</a>
                 </li>
