@@ -31,10 +31,14 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
+    // Jenis sekarang khusus Admin (tidak bisa diakses Kasir)
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('/jenis', JenisController::class);
+    });
+
     Route::middleware('role:admin,kasir')->group(function () {
         Route::resource('/produk', ProdukController::class);
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);
-        Route::resource('/jenis', JenisController::class);
     });
 });

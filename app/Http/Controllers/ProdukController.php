@@ -128,7 +128,7 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        return redirect()->route('produk.edit', $produk->id)->with('success', 'Product berhasil diubah.');
+        return redirect()->route('produk.edit', $produk->id)->with('success', 'Produk berhasil diubah.');
     }
 
     /**
