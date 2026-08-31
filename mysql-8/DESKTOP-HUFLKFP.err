@@ -1,0 +1,9 @@
+2026-08-31T02:28:08.837863Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2026-08-31T02:28:08.844077Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld.exe (mysqld 8.4.3) initializing of server in progress as process 10840
+2026-08-31T02:28:08.889314Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-08-31T02:28:09.370629Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-08-31T02:28:10.605611Z 0 [Warning] [MY-013829] [Server] Missing data directory for ICU regular expressions: C:\laragon\bin\mysql\mysql-8.4.3-winx64\lib\private\.
+2026-08-31T02:28:11.313170Z 0 [ERROR] [MY-000067] [Server] unknown variable 'default_authentication_plugin=mysql_native_password'.
+2026-08-31T02:28:11.314691Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\laragon\www\pos-klaraaa\mysql-8\ is unusable. You can remove all files that the server added to it.
+2026-08-31T02:28:11.315293Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-08-31T02:28:12.854855Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.

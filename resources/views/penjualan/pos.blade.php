@@ -442,7 +442,7 @@
             </div>
         @endif
 
-        <h4 class="pos-title">Tambah dan Edit</h4>
+        <h4 class="pos-title">{{ $mode === 'edit' ? 'Edit Penjualan' : 'Tambah Penjualan' }}</h4>
 
         <div class="row g-3">
 
