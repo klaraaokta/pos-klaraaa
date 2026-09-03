@@ -108,7 +108,9 @@
         .penjualan-page-content .table-responsive {
             border: 1px solid #eef0f4;
             border-radius: 12px;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
             background-color: #ffffff;
             box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
         }
@@ -426,7 +428,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">#</th>
                         <th scope="col">Tanggal Transaksi</th>
                         <th scope="col">Total Pembayaran</th>
                         <th scope="col">Metode Pembayaran</th>
