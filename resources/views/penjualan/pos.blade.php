@@ -461,6 +461,9 @@
                         @foreach ($products as $product)
                             <form method="POST" action="{{ route('itempenjualan.store') }}" class="produk-item-form">
                                 @csrf
+                                {{-- FIX: kirim sale_id secara eksplisit, jangan biarkan
+                                     controller menebak sale OPEN "pertama" milik user --}}
+                                <input type="hidden" name="sale_id" value="{{ $sale->id }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                                 <button class="produk-item-btn {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">

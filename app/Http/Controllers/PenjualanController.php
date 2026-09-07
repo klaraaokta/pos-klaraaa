@@ -45,12 +45,18 @@ class PenjualanController extends Controller
      */
     public function create(SearchRequest $request)
     {
-        $sale = Penjualan::create([
-            'user_id'           => Auth::id(),
-            'status'            => 'OPEN',
-            'total_pembayaran'  => 0,
-            'metode_pembayaran' => 'CASH',
-        ]);
+        // FIX: gunakan firstOrCreate supaya tidak membuat sale OPEN baru
+        // setiap kali route ini dipanggil (misal saat mengetik di kolom search).
+        $sale = Penjualan::firstOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'status'  => 'OPEN',
+            ],
+            [
+                'total_pembayaran'  => 0,
+                'metode_pembayaran' => 'CASH',
+            ]
+        );
 
         $keyword = $request->input('search');
 
@@ -86,6 +92,7 @@ class PenjualanController extends Controller
 
         return view('penjualan.detail', ['sale' => $penjualan]);
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -142,6 +149,7 @@ class PenjualanController extends Controller
     public function destroy(Penjualan $penjualan)
     {
         $this->authorize('delete', $penjualan);
+
         // Pastikan hanya transaksi OPEN
         if ($penjualan->status !== 'OPEN') {
             return redirect()->route('penjualan.index')->with('errors', 'Transaksi sudah selesai tidak bisa dibatalkan');
