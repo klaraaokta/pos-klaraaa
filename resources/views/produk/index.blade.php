@@ -62,10 +62,19 @@
         }
 
         .produk-search {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
             flex: 1;
-            min-width: 220px;
-            max-width: 340px;
+            min-width: 260px;
+            max-width: 560px;
             order: 1;
+            flex-wrap: wrap;
+        }
+
+        .produk-search .input-group {
+            flex: 1;
+            min-width: 200px;
         }
 
         .produk-search .form-control {
@@ -92,6 +101,52 @@
             background-color: #4f46e5;
             border-color: #4f46e5;
             color: #ffffff;
+        }
+
+        .filter-jenis {
+            position: relative;
+            flex: 0 0 auto;
+            min-width: 170px;
+        }
+
+        .filter-jenis i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .filter-jenis select {
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            padding: 0.5rem 2rem 0.5rem 2.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.6rem center;
+            background-size: 14px;
+            transition: border-color 0.15s, background-color 0.15s;
+        }
+
+        .filter-jenis select:hover {
+            border-color: #c7d2fe;
+        }
+
+        .filter-jenis select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px #eef2ff;
         }
 
         .produk-page-content .table-responsive {
@@ -265,6 +320,16 @@
             .produk-search {
                 order: 2;
                 max-width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .produk-search .input-group {
+                min-width: 100%;
+            }
+
+            .filter-jenis {
+                min-width: 100%;
             }
 
             .produk-page-content .table-responsive {
@@ -381,15 +446,27 @@
         </div>
 
         <div class="produk-toolbar">
-            <form action="{{ route('produk.index') }}" method="GET" class="produk-search">
-                <div class="input-group">
+            <div class="produk-search">
+                <form action="{{ route('produk.index') }}" method="GET" class="input-group">
                     <input type="text" name="search" value="{{ request('search') }}" class="form-control"
                         placeholder="Cari nama produk...">
                     <button class="btn btn-outline-secondary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
-                </div>
-            </form>
+                </form>
+
+                <form action="{{ route('produk.index') }}" method="GET" class="filter-jenis">
+                    <i class="bi bi-funnel"></i>
+                    <select name="jenis" onchange="this.form.submit()">
+                        <option value="">Semua Jenis</option>
+                        @foreach ($jenisList as $jenis)
+                            <option value="{{ $jenis->id }}" {{ request('jenis') == $jenis->id ? 'selected' : '' }}>
+                                {{ $jenis->nama }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
 
             @can('create', App\Models\Produk::class)
                 <a href="{{ route('produk.create') }}" class="btn btn-primary">
@@ -402,7 +479,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis</th>
