@@ -45,15 +45,13 @@ class PenjualanController extends Controller
      */
     public function create(SearchRequest $request)
     {
-        // FIX: gunakan firstOrCreate supaya tidak membuat sale OPEN baru
-        // setiap kali route ini dipanggil (misal saat mengetik di kolom search).
         $sale = Penjualan::firstOrCreate(
             [
                 'user_id' => Auth::id(),
-                'status'  => 'OPEN',
+                'status' => 'OPEN',
             ],
             [
-                'total_pembayaran'  => 0,
+                'total_pembayaran' => 0,
                 'metode_pembayaran' => 'CASH',
             ]
         );
@@ -115,7 +113,8 @@ class PenjualanController extends Controller
     public function update(Request $request, Penjualan $penjualan)
     {
         $request->validate([
-            'payment_method' => 'required|in:CASH,QRIS'
+            'payment_method' => 'required|in:CASH,QRIS',
+            'uang_bayar' => 'required_if:payment_method,CASH|nullable|integer|min:0',
         ]);
 
         if ($penjualan->status !== 'OPEN') {
@@ -126,15 +125,30 @@ class PenjualanController extends Controller
             return back()->with('errors', 'Keranjang masih kosong');
         }
 
-        DB::transaction(function () use ($penjualan, $request) {
+        $total = $penjualan->itemPenjualan()->sum('subtotal');
 
-            // Hitung ulang total (anti manipulasi)
-            $total = $penjualan->itemPenjualan()->sum('subtotal');
+        $uangBayar = null;
+        $kembalian = null;
 
+        // FIX: validasi uang bayar SEBELUM transaction, biar redirect
+        // dengan pesan error jalan (pola sama seperti di ItemPenjualanController).
+        if ($request->payment_method === 'CASH') {
+            $uangBayar = (int) $request->uang_bayar;
+
+            if ($uangBayar < $total) {
+                return back()->with('errors', 'Uang bayar kurang dari total pembayaran');
+            }
+
+            $kembalian = $uangBayar - $total;
+        }
+
+        DB::transaction(function () use ($penjualan, $total, $request, $uangBayar, $kembalian) {
             $penjualan->update([
-                'metode_pembayaran'  => $request->payment_method,
-                'total_pembayaran'   => $total,
-                'status'             => 'COMPLETED'
+                'metode_pembayaran' => $request->payment_method,
+                'total_pembayaran' => $total,
+                'uang_bayar' => $uangBayar,
+                'kembalian' => $kembalian,
+                'status' => 'COMPLETED'
             ]);
         });
 
@@ -150,7 +164,6 @@ class PenjualanController extends Controller
     {
         $this->authorize('delete', $penjualan);
 
-        // Pastikan hanya transaksi OPEN
         if ($penjualan->status !== 'OPEN') {
             return redirect()->route('penjualan.index')->with('errors', 'Transaksi sudah selesai tidak bisa dibatalkan');
         }
@@ -158,14 +171,10 @@ class PenjualanController extends Controller
         DB::transaction(function () use ($penjualan) {
 
             foreach ($penjualan->itemPenjualan as $item) {
-                // Kembalikan stok
                 $item->produk->increment('stok', $item->kuantitas);
             }
 
-            // Hapus Item
             $penjualan->itemPenjualan()->delete();
-
-            // Hapus Penjualan
             $penjualan->delete();
         });
 

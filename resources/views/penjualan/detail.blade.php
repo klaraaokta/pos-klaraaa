@@ -14,7 +14,6 @@
             padding: 2rem 1rem 4rem;
         }
 
-        /* ---------- Page header ---------- */
         .detail-header {
             display: flex;
             align-items: center;
@@ -48,7 +47,6 @@
             color: #334155;
         }
 
-        /* ---------- Card utama ---------- */
         .detail-card {
             background-color: #ffffff;
             border: 1px solid #eef0f4;
@@ -58,7 +56,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ---------- Info transaksi ---------- */
         .detail-info {
             padding: 1.5rem;
             border-bottom: 1px solid #f1f5f9;
@@ -96,20 +93,17 @@
             text-align: right;
         }
 
-        /* ID Transaksi = identifier unik, dibedain */
         .detail-info-value.detail-id {
             color: #4f46e5;
             font-family: monospace;
         }
 
-        /* Kasir = info sekunder, diredupkan */
         .detail-info-value.detail-kasir {
             font-weight: 500;
             color: #94a3b8;
             font-size: 0.85rem;
         }
 
-        /* ---------- Badge ---------- */
         .metode-badge {
             display: inline-block;
             padding: 0.2rem 0.65rem;
@@ -152,7 +146,6 @@
             color: #b91c1c;
         }
 
-        /* ---------- Item list ---------- */
         .detail-items-header {
             padding: 1.1rem 1.5rem 0.8rem;
             font-size: 0.78rem;
@@ -221,7 +214,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* ---------- Footer total ---------- */
         .detail-footer {
             background-color: #f8fafc;
             padding: 1.25rem 1.5rem;
@@ -248,7 +240,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* ---------- Actions ---------- */
         .detail-actions {
             display: flex;
             gap: 0.6rem;
@@ -270,18 +261,12 @@
             border-color: #4338ca;
         }
 
-        /* =========================================================
-               RESPONSIVE — TABLET & window sempit (≤ 991.98px)
-               ========================================================= */
         @media (max-width: 991.98px) {
             .detail-page-content {
                 padding: 1.5rem 1rem 3rem;
             }
         }
 
-        /* =========================================================
-               RESPONSIVE — MOBILE (≤ 575.98px)
-               ========================================================= */
         @media (max-width: 575.98px) {
             .detail-page-content {
                 padding: 1.25rem 0.85rem 3rem;
@@ -333,9 +318,6 @@
             }
         }
 
-        /* =========================================================
-               PRINT — sembunyikan elemen yang gak perlu di hasil cetak
-               ========================================================= */
         @media print {
 
             .pos-navbar,
@@ -374,7 +356,6 @@
         </div>
 
         <div class="detail-card">
-            {{-- ================== INFO TRANSAKSI ================== --}}
             <div class="detail-info">
                 <div class="detail-info-row">
                     <span class="detail-info-label">ID Transaksi</span>
@@ -394,6 +375,18 @@
                         <span class="metode-badge">{{ $sale->metode_pembayaran }}</span>
                     </span>
                 </div>
+
+                @if ($sale->metode_pembayaran === 'CASH')
+                    <div class="detail-info-row">
+                        <span class="detail-info-label">Uang Bayar</span>
+                        <span class="detail-info-value">Rp {{ number_format($sale->uang_bayar) }}</span>
+                    </div>
+                    <div class="detail-info-row">
+                        <span class="detail-info-label">Kembalian</span>
+                        <span class="detail-info-value">Rp {{ number_format($sale->kembalian) }}</span>
+                    </div>
+                @endif
+
                 <div class="detail-info-row">
                     <span class="detail-info-label">Status</span>
                     <span class="detail-info-value">
@@ -406,7 +399,6 @@
                 </div>
             </div>
 
-            {{-- ================== ITEM PRODUK ================== --}}
             <div class="detail-items-header">
                 Item Produk ({{ $sale->itemPenjualan->count() }})
             </div>
@@ -432,7 +424,6 @@
                 </div>
             @endforelse
 
-            {{-- ================== TOTAL ================== --}}
             <div class="detail-footer">
                 <div class="detail-total-row">
                     <span class="detail-total-label">Total Pembayaran</span>
