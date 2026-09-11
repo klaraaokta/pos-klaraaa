@@ -136,20 +136,20 @@
         }
 
         .dashboard-content .table thead th {
-            background-color: #f8fafc;
-            color: #64748b;
+            background-color: #4f46e5;
+            color: #ffffff;
             font-weight: 600;
             font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            border-bottom: 1px solid #eef0f4;
+            border-bottom: 1px solid #4f46e5;
             padding: 0.75rem 1rem;
             white-space: nowrap;
         }
 
         .dashboard-content .table thead th:first-child {
             width: 48px;
-            color: #cbd5e1;
+            color: #e0e7ff;
         }
 
         .dashboard-content .table tbody td {
@@ -201,8 +201,8 @@
         }
 
         /* =========================================================
-               RESPONSIVE — TABLET (≤ 991.98px)
-               ========================================================= */
+                   RESPONSIVE — TABLET (≤ 991.98px)
+                   ========================================================= */
         @media (max-width: 991.98px) {
             .dashboard-content {
                 padding: 1.75rem 1rem 3.5rem;
@@ -214,8 +214,8 @@
         }
 
         /* =========================================================
-               RESPONSIVE — MOBILE (≤ 767.98px)
-               ========================================================= */
+                   RESPONSIVE — MOBILE (≤ 767.98px)
+                   ========================================================= */
         @media (max-width: 767.98px) {
             .dashboard-content {
                 padding: 1.25rem 0.85rem 3rem;

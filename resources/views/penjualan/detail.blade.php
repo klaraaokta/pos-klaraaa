@@ -3,15 +3,18 @@
 @section('title', 'Detail Penjualan')
 
 @push('styles')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: #f8fafc;
+            background-color: #f1f3f5;
         }
 
         .detail-page-content {
-            max-width: 800px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 2rem 1rem 4rem;
+            padding: 1.5rem 1rem 3rem;
         }
 
         .detail-header {
@@ -19,12 +22,12 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #0f172a;
             letter-spacing: -0.01em;
@@ -33,12 +36,12 @@
 
         .btn-back {
             background-color: transparent;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e7eb;
             color: #64748b;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            border-radius: 7px;
         }
 
         .btn-back:hover {
@@ -47,202 +50,152 @@
             color: #334155;
         }
 
-        .detail-card {
+        /* ---------- Kertas struk ---------- */
+        .receipt-paper {
             background-color: #ffffff;
-            border: 1px solid #eef0f4;
-            border-radius: 14px;
-            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-            overflow: hidden;
-            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem 1.4rem;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            color: #1e293b;
+            margin-bottom: 1.25rem;
         }
 
-        .detail-info {
-            padding: 1.5rem;
-            border-bottom: 1px solid #f1f5f9;
+        .receipt-store {
+            text-align: center;
+            margin-bottom: 0.9rem;
         }
 
-        .detail-info-row {
+        .receipt-store-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .receipt-store-sub {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 0.15rem;
+        }
+
+        .receipt-divider {
+            border-top: 1px dashed #cbd5e1;
+            margin: 0.75rem 0;
+        }
+
+        .receipt-info-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0.6rem 0;
-            border-bottom: 1px dashed #f1f5f9;
+            font-size: 0.76rem;
+            padding: 0.12rem 0;
+            color: #334155;
         }
 
-        .detail-info-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .detail-info-row:first-child {
-            padding-top: 0;
-        }
-
-        .detail-info-label {
-            font-size: 0.78rem;
-            font-weight: 600;
+        .receipt-info-row span:first-child {
             color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
         }
 
-        .detail-info-value {
-            font-size: 0.9rem;
-            font-weight: 600;
+        .receipt-item {
+            margin-bottom: 0.55rem;
+        }
+
+        .receipt-item-nama {
+            font-size: 0.8rem;
+            font-weight: 700;
             color: #0f172a;
-            text-align: right;
         }
 
-        .detail-info-value.detail-id {
-            color: #4f46e5;
-            font-family: monospace;
+        .receipt-item-detail {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.76rem;
+            color: #475569;
+            padding-left: 0.1rem;
         }
 
-        .detail-info-value.detail-kasir {
-            font-weight: 500;
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
-
-        .metode-badge {
-            display: inline-block;
-            padding: 0.2rem 0.65rem;
-            border-radius: 999px;
-            font-size: 0.72rem;
+        .receipt-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.95rem;
             font-weight: 700;
-            background-color: #eef2ff;
-            color: #4338ca;
-            text-transform: capitalize;
+            padding: 0.15rem 0;
         }
 
-        .status-badge {
+        .receipt-pay-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            padding: 0.1rem 0;
+            color: #334155;
+        }
+
+        .receipt-status {
+            text-align: center;
+            margin: 0.85rem 0 0.4rem;
+        }
+
+        .receipt-status-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
+            padding: 0.2rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.68rem;
             font-weight: 700;
-            text-transform: capitalize;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px dashed currentColor;
         }
 
-        .status-badge.completed,
-        .status-badge.lunas,
-        .status-badge.selesai,
-        .status-badge.paid {
-            background-color: #dcfce7;
+        .receipt-status-badge.completed,
+        .receipt-status-badge.lunas,
+        .receipt-status-badge.selesai,
+        .receipt-status-badge.paid {
             color: #15803d;
         }
 
-        .status-badge.open,
-        .status-badge.pending,
-        .status-badge.menunggu {
-            background-color: #fef3c7;
+        .receipt-status-badge.open,
+        .receipt-status-badge.pending,
+        .receipt-status-badge.menunggu {
             color: #b45309;
         }
 
-        .status-badge.batal,
-        .status-badge.cancelled,
-        .status-badge.gagal {
-            background-color: #fee2e2;
+        .receipt-status-badge.batal,
+        .receipt-status-badge.cancelled,
+        .receipt-status-badge.gagal {
             color: #b91c1c;
         }
 
-        .detail-items-header {
-            padding: 1.1rem 1.5rem 0.8rem;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #64748b;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .detail-item-row {
+        .receipt-barcode {
             display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            padding: 0.9rem 1.5rem;
-            border-bottom: 1px solid #f8fafc;
+            justify-content: center;
+            margin: 1rem 0 0.35rem;
         }
 
-        .detail-item-row:last-child {
-            border-bottom: none;
-        }
-
-        .detail-item-thumb {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid #eef0f4;
-            flex-shrink: 0;
-        }
-
-        .detail-item-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .detail-item-nama {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.1rem;
-        }
-
-        .detail-item-meta {
-            font-size: 0.78rem;
-            color: #94a3b8;
-        }
-
-        .detail-item-subtotal {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #4338ca;
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .detail-empty {
-            padding: 2.5rem 1rem;
+        .receipt-barcode-number {
             text-align: center;
-            color: #94a3b8;
-        }
-
-        .detail-empty i {
-            font-size: 1.8rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .detail-footer {
-            background-color: #f8fafc;
-            padding: 1.25rem 1.5rem;
-        }
-
-        .detail-total-row {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-        }
-
-        .detail-total-label {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
             color: #334155;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
         }
 
-        .detail-total-value {
-            font-size: 1.55rem;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.02em;
+        .receipt-footer {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .receipt-empty {
+            text-align: center;
+            padding: 1.25rem 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
         }
 
         .detail-actions {
             display: flex;
-            gap: 0.6rem;
+            gap: 0.55rem;
             justify-content: flex-end;
         }
 
@@ -250,10 +203,10 @@
             background-color: #4f46e5;
             border-color: #4f46e5;
             color: #ffffff;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            padding: 0.55rem 1.2rem;
-            border-radius: 8px;
+            padding: 0.5rem 1.1rem;
+            border-radius: 7px;
         }
 
         .detail-actions .btn-print:hover {
@@ -261,51 +214,13 @@
             border-color: #4338ca;
         }
 
-        @media (max-width: 991.98px) {
-            .detail-page-content {
-                padding: 1.5rem 1rem 3rem;
-            }
-        }
-
         @media (max-width: 575.98px) {
             .detail-page-content {
-                padding: 1.25rem 0.85rem 3rem;
+                padding: 1rem 0.85rem 2.5rem;
             }
 
-            .page-title {
-                font-size: 1.2rem;
-            }
-
-            .detail-info,
-            .detail-items-header,
-            .detail-item-row,
-            .detail-footer {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .detail-info-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.15rem;
-            }
-
-            .detail-info-value {
-                text-align: left;
-            }
-
-            .detail-item-row {
-                flex-wrap: wrap;
-            }
-
-            .detail-item-subtotal {
-                width: 100%;
-                text-align: left;
-                padding-left: calc(48px + 0.85rem);
-            }
-
-            .detail-total-value {
-                font-size: 1.3rem;
+            .receipt-paper {
+                padding: 1.25rem 1rem;
             }
 
             .detail-actions {
@@ -332,12 +247,11 @@
 
             .detail-page-content {
                 padding: 0 !important;
-                max-width: 100% !important;
+                max-width: 320px !important;
             }
 
-            .detail-card {
+            .receipt-paper {
                 box-shadow: none !important;
-                border: 1px solid #cbd5e1 !important;
             }
         }
     </style>
@@ -355,80 +269,110 @@
             </a>
         </div>
 
-        <div class="detail-card">
-            <div class="detail-info">
-                <div class="detail-info-row">
-                    <span class="detail-info-label">ID Transaksi</span>
-                    <span class="detail-info-value detail-id">#{{ $sale->id }}</span>
-                </div>
-                <div class="detail-info-row">
-                    <span class="detail-info-label">Tanggal Transaksi</span>
-                    <span class="detail-info-value">{{ $sale->created_at->translatedFormat('d F Y, H:i:s') }}</span>
-                </div>
-                <div class="detail-info-row">
-                    <span class="detail-info-label">Total Pembayaran</span>
-                    <span class="detail-info-value">Rp {{ number_format($sale->total_pembayaran) }}</span>
-                </div>
-                <div class="detail-info-row">
-                    <span class="detail-info-label">Metode Pembayaran</span>
-                    <span class="detail-info-value">
-                        <span class="metode-badge">{{ $sale->metode_pembayaran }}</span>
-                    </span>
-                </div>
+        <div class="receipt-paper">
 
-                @if ($sale->metode_pembayaran === 'CASH')
-                    <div class="detail-info-row">
-                        <span class="detail-info-label">Uang Bayar</span>
-                        <span class="detail-info-value">Rp {{ number_format($sale->uang_bayar) }}</span>
-                    </div>
-                    <div class="detail-info-row">
-                        <span class="detail-info-label">Kembalian</span>
-                        <span class="detail-info-value">Rp {{ number_format($sale->kembalian) }}</span>
-                    </div>
-                @endif
-
-                <div class="detail-info-row">
-                    <span class="detail-info-label">Status</span>
-                    <span class="detail-info-value">
-                        <span class="status-badge {{ strtolower($sale->status) }}">{{ $sale->status }}</span>
-                    </span>
-                </div>
-                <div class="detail-info-row">
-                    <span class="detail-info-label">Kasir</span>
-                    <span class="detail-info-value detail-kasir">{{ $sale->user->name }}</span>
-                </div>
+            {{-- ================== KOP TOKO ================== --}}
+            <div class="receipt-store">
+                <div class="receipt-store-name">KLARA RASA</div>
+                <div class="receipt-store-sub">Struk Pembelian</div>
             </div>
 
-            <div class="detail-items-header">
-                Item Produk ({{ $sale->itemPenjualan->count() }})
+            <div class="receipt-divider"></div>
+
+            {{-- ================== INFO TRANSAKSI ================== --}}
+            <div class="receipt-info-row">
+                <span>No. Transaksi</span>
+                <span>#{{ str_pad($sale->id, 6, '0', STR_PAD_LEFT) }}</span>
+            </div>
+            <div class="receipt-info-row">
+                <span>Tanggal</span>
+                <span>{{ $sale->created_at->translatedFormat('d/m/Y') }}</span>
+            </div>
+            <div class="receipt-info-row">
+                <span>Waktu</span>
+                <span>{{ $sale->created_at->format('H:i') }}</span>
+            </div>
+            <div class="receipt-info-row">
+                <span>Kasir</span>
+                <span>{{ $sale->user->name }}</span>
             </div>
 
+            <div class="receipt-divider"></div>
+
+            {{-- ================== ITEM PRODUK ================== --}}
             @forelse ($sale->itemPenjualan as $item)
-                <div class="detail-item-row">
-                    <img src="{{ asset('storage/' . $item->produk->foto) }}" alt="{{ $item->produk->nama }}"
-                        class="detail-item-thumb">
-                    <div class="detail-item-info">
-                        <div class="detail-item-nama">{{ $item->produk->nama }}</div>
-                        <div class="detail-item-meta">
-                            {{ $item->kuantitas }} x Rp {{ number_format($item->harga_satuan) }}
-                        </div>
-                    </div>
-                    <div class="detail-item-subtotal">
-                        Rp {{ number_format($item->subtotal) }}
+                <div class="receipt-item">
+                    <div class="receipt-item-nama">{{ strtoupper($item->produk->nama) }}</div>
+                    <div class="receipt-item-detail">
+                        <span>{{ $item->kuantitas }} x {{ number_format($item->harga_satuan, 0, ',', '.') }}</span>
+                        <span>{{ number_format($item->subtotal, 0, ',', '.') }}</span>
                     </div>
                 </div>
             @empty
-                <div class="detail-empty">
-                    <i class="bi bi-box-seam"></i>
-                    Tidak ada item produk pada transaksi ini
-                </div>
+                <div class="receipt-empty">Tidak ada item produk</div>
             @endforelse
 
-            <div class="detail-footer">
-                <div class="detail-total-row">
-                    <span class="detail-total-label">Total Pembayaran</span>
-                    <span class="detail-total-value">Rp {{ number_format($sale->total_pembayaran) }}</span>
+            <div class="receipt-divider"></div>
+
+            {{-- ================== TOTAL ================== --}}
+            <div class="receipt-total-row">
+                <span>TOTAL</span>
+                <span>Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</span>
+            </div>
+
+            <div class="receipt-divider"></div>
+
+            {{-- ================== PEMBAYARAN ================== --}}
+            <div class="receipt-pay-row">
+                <span>Metode</span>
+                <span>{{ $sale->metode_pembayaran }}</span>
+            </div>
+
+            @if ($sale->metode_pembayaran === 'CASH')
+                <div class="receipt-pay-row">
+                    <span>Uang Masuk</span>
+                    <span>Rp {{ number_format($sale->uang_bayar, 0, ',', '.') }}</span>
                 </div>
+                <div class="receipt-pay-row">
+                    <span>Kembali</span>
+                    <span>Rp {{ number_format($sale->kembalian, 0, ',', '.') }}</span>
+                </div>
+            @endif
+
+            {{-- ================== STATUS ================== --}}
+            <div class="receipt-status">
+                <span class="receipt-status-badge {{ strtolower($sale->status) }}">{{ $sale->status }}</span>
+            </div>
+
+            {{-- ================== BARCODE (visual) ================== --}}
+            @php
+                mt_srand($sale->id);
+                $barCount = 46;
+                $gap = 1.6;
+                $barWidths = [];
+                for ($i = 0; $i < $barCount; $i++) {
+                    $barWidths[] = mt_rand(1, 3);
+                }
+                // Total lebar semua batang + jarak antar batang,
+                // dipakai sebagai viewBox biar SVG-nya otomatis penuh 220px
+                $totalWidth = array_sum($barWidths) + ($barCount - 1) * $gap;
+                $barcodeNumber = str_pad($sale->id, 12, '0', STR_PAD_LEFT);
+            @endphp
+            <div class="receipt-barcode">
+                <svg width="220" height="46" viewBox="0 0 {{ $totalWidth }} 46" preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    @php $x = 0; @endphp
+                    @foreach ($barWidths as $w)
+                        <rect x="{{ $x }}" y="0" width="{{ $w }}" height="38" fill="#0f172a">
+                        </rect>
+                        @php $x += $w + $gap; @endphp
+                    @endforeach
+                </svg>
+            </div>
+            <div class="receipt-barcode-number">{{ $barcodeNumber }}</div>
+            <div class="receipt-footer">
+                TERIMA KASIH ATAS KUNJUNGAN ANDA<br>
+                Barang yang sudah dibeli tidak dapat dikembalikan
             </div>
         </div>
 

@@ -120,7 +120,7 @@
     <div class="login-outer">
         <div class="card text-center login-card">
             <div class="card-header">
-                Login POS
+                Login Klara Rasa
             </div>
             <div class="card-body">
                 <form action="{{ route('auth') }}" method="POST">

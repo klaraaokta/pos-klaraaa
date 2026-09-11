@@ -174,7 +174,7 @@
 @endpush
 <nav class="navbar navbar-expand-lg bg-body-tertiary pos-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">POS</a>
+        <a class="navbar-brand" href="#">KLARA RASA</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#posNavbarContent"
             aria-controls="posNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,6 +206,12 @@
                     <a class="nav-link {{ Request::is('penjualan') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('penjualan.index') }}">Penjualan</a>
                 </li>
+                {{--
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('about') }}">About</a>
+                </li>
+                --}}
             </ul>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf

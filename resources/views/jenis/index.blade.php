@@ -108,20 +108,20 @@
         }
 
         .jenis-page-content .table thead th {
-            background-color: #f8fafc;
-            color: #64748b;
+            background-color: #4f46e5;
+            color: #ffffff;
             font-weight: 600;
             font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            border-bottom: 1px solid #eef0f4;
+            border-bottom: 1px solid #4f46e5;
             padding: 0.8rem 1rem;
             white-space: nowrap;
         }
 
         .jenis-page-content .table thead th:first-child {
             width: 48px;
-            color: #cbd5e1;
+            color: #e0e7ff;
         }
 
         .jenis-page-content .table tbody td {
@@ -347,7 +347,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Nama Jenis</th>
                         <th scope="col">Jumlah Produk</th>
                         <th scope="col">Aksi</th>
@@ -364,14 +364,15 @@
                             <td data-label="Aksi">
                                 <div class="action-group">
                                     <a href="{{ route('jenis.edit', $item) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{ route('jenis.destroy', $item) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('jenis.destroy', $item) }}" method="POST" class="d-inline"
+                                        data-confirm="Yakin hapus jenis ini?" data-confirm-color="#b91c1c">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin hapus jenis ini?')">
+                                        <button type="submit" class="btn btn-sm btn-danger">
                                             Hapus
                                         </button>
                                     </form>
+
                                 </div>
                             </td>
                         </tr>

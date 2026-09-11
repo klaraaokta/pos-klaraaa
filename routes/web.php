@@ -8,6 +8,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\AboutController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 
@@ -31,9 +32,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
-    // Jenis sekarang khusus Admin (tidak bisa diakses Kasir)
+    // Jenis & About sekarang khusus Admin (tidak bisa diakses Kasir)
     Route::middleware('role:admin')->group(function () {
         Route::resource('/jenis', JenisController::class);
+        Route::get('/about', [AboutController::class, 'index'])->name('about');
     });
 
     Route::middleware('role:admin,kasir')->group(function () {

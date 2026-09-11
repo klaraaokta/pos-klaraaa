@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('tittle', 'Produk')
-
 @push('styles')
     <style>
         body {
@@ -9,21 +8,21 @@
         }
 
         .produk-page-content {
-            max-width: 1200px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 2rem 1rem 4rem;
+            padding: 1.5rem 1rem 3rem;
         }
 
         .produk-header {
             display: flex;
             align-items: baseline;
             gap: 0.6rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #0f172a;
             letter-spacing: -0.01em;
@@ -31,9 +30,9 @@
         }
 
         .produk-count {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            color: #94a3b8;
+            color: #8891a0;
         }
 
         .produk-toolbar {
@@ -41,18 +40,18 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
         }
 
         .produk-toolbar .btn-primary {
             background-color: #4f46e5;
             border-color: #4f46e5;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            padding: 0.55rem 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(79, 70, 229, 0.25);
+            padding: 0.5rem 1.1rem;
+            border-radius: 7px;
+            box-shadow: 0 1px 2px rgba(79, 70, 229, 0.2);
             order: 2;
         }
 
@@ -64,10 +63,10 @@
         .produk-search {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.55rem;
             flex: 1;
             min-width: 260px;
-            max-width: 560px;
+            max-width: 540px;
             order: 1;
             flex-wrap: wrap;
         }
@@ -78,10 +77,10 @@
         }
 
         .produk-search .form-control {
-            font-size: 0.82rem;
-            border: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            border: 1px solid #e5e7eb;
             background-color: #f8fafc;
-            padding: 0.5rem 0.85rem;
+            padding: 0.45rem 0.8rem;
         }
 
         .produk-search .form-control:focus {
@@ -91,10 +90,10 @@
         }
 
         .produk-search .btn-outline-secondary {
-            font-size: 0.82rem;
-            border-color: #e2e8f0;
+            font-size: 0.8rem;
+            border-color: #e5e7eb;
             background-color: #f8fafc;
-            color: #94a3b8;
+            color: #8891a0;
         }
 
         .produk-search .btn-outline-secondary:hover {
@@ -106,16 +105,16 @@
         .filter-jenis {
             position: relative;
             flex: 0 0 auto;
-            min-width: 170px;
+            min-width: 160px;
         }
 
         .filter-jenis i {
             position: absolute;
-            left: 0.75rem;
+            left: 0.7rem;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.85rem;
-            color: #94a3b8;
+            font-size: 0.8rem;
+            color: #8891a0;
             pointer-events: none;
         }
 
@@ -123,18 +122,18 @@
             width: 100%;
             appearance: none;
             -webkit-appearance: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #334155;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e7eb;
             background-color: #f8fafc;
-            padding: 0.5rem 2rem 0.5rem 2.1rem;
+            padding: 0.45rem 1.9rem 0.45rem 2rem;
             border-radius: 6px;
             cursor: pointer;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 0.6rem center;
-            background-size: 14px;
+            background-position: right 0.55rem center;
+            background-size: 13px;
             transition: border-color 0.15s, background-color 0.15s;
         }
 
@@ -150,8 +149,8 @@
         }
 
         .produk-page-content .table-responsive {
-            border: 1px solid #eef0f4;
-            border-radius: 12px;
+            border: 1px solid #ececf1;
+            border-radius: 10px;
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
@@ -160,25 +159,25 @@
         }
 
         .produk-page-content .table {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             margin-bottom: 0;
         }
 
         .produk-page-content .table thead th {
-            background-color: #f8fafc;
-            color: #64748b;
+            background-color: #4f46e5;
+            color: #ffffff;
             font-weight: 600;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            border-bottom: 1px solid #eef0f4;
-            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #4f46e5;
+            padding: 0.65rem 0.85rem;
             white-space: nowrap;
         }
 
         .produk-page-content .table tbody td,
         .produk-page-content .table tbody th {
-            padding: 0.7rem 1rem;
+            padding: 0.55rem 0.85rem;
             vertical-align: middle;
             color: #334155;
             border-bottom: 1px solid #f8fafc;
@@ -194,7 +193,7 @@
 
         .produk-page-content .table tbody th:first-child {
             color: #cbd5e1;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 500;
         }
 
@@ -204,16 +203,16 @@
         }
 
         .produk-user {
-            font-size: 0.78rem;
-            color: #94a3b8;
+            font-size: 0.76rem;
+            color: #8891a0;
         }
 
         .produk-thumb {
-            width: 56px;
-            height: 56px;
+            width: 42px;
+            height: 42px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #eef0f4;
+            border-radius: 7px;
+            border: 1px solid #ececf1;
             flex-shrink: 0;
         }
 
@@ -228,9 +227,9 @@
 
         .stok-badge {
             display: inline-block;
-            padding: 0.2rem 0.65rem;
+            padding: 0.18rem 0.6rem;
             border-radius: 999px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             background-color: #eef2ff;
             color: #4338ca;
@@ -238,22 +237,22 @@
 
         .jenis-badge {
             display: inline-block;
-            padding: 0.2rem 0.65rem;
+            padding: 0.18rem 0.6rem;
             border-radius: 999px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             background-color: #f1f5f9;
             color: #475569;
         }
 
         .jenis-kosong {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #cbd5e1;
         }
 
         .action-group {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.35rem;
             flex-wrap: wrap;
         }
 
@@ -261,6 +260,9 @@
             background-color: transparent;
             border-color: #f59e0b;
             color: #b45309;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
         }
 
         .action-group .btn-warning:hover {
@@ -272,6 +274,9 @@
             background-color: transparent;
             border-color: #dc2626;
             color: #dc2626;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
         }
 
         .action-group .btn-danger:hover {
@@ -280,30 +285,26 @@
         }
 
         .produk-empty {
-            padding: 3rem 1rem;
+            padding: 2.5rem 1rem;
             text-align: center;
-            color: #94a3b8;
+            color: #a1a8b5;
         }
 
         .produk-empty i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         @media (max-width: 991.98px) {
             .produk-page-content {
-                padding: 1.5rem 1rem 3rem;
+                padding: 1.25rem 1rem 2.5rem;
             }
         }
 
         @media (max-width: 767.98px) {
             .produk-page-content {
-                padding: 1.25rem 0.85rem 3rem;
-            }
-
-            .page-title {
-                font-size: 1.25rem;
+                padding: 1rem 0.85rem 2.5rem;
             }
 
             .produk-toolbar {
@@ -350,17 +351,17 @@
             .produk-page-content .table tbody {
                 display: flex;
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 0.6rem;
             }
 
             .produk-page-content .table tbody tr {
                 display: flex;
                 flex-direction: column;
                 background-color: #ffffff;
-                border: 1px solid #eef0f4;
-                border-radius: 12px;
+                border: 1px solid #ececf1;
+                border-radius: 10px;
                 box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-                padding: 0.9rem 1rem;
+                padding: 0.75rem 0.85rem;
             }
 
             .produk-page-content .table tbody td,
@@ -368,9 +369,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 0.75rem;
-                padding: 0.4rem 0;
-                border-bottom: 1px dashed #f1f5f9;
+                gap: 0.6rem;
+                padding: 0.3rem 0;
+                border-bottom: 1px dashed #ececf1;
                 text-align: right;
             }
 
@@ -382,17 +383,15 @@
             .produk-page-content .table tbody td::before,
             .produk-page-content .table tbody th::before {
                 content: attr(data-label);
-                font-size: 0.7rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                color: #94a3b8;
+                font-size: 0.66rem;
+                font-weight: 600;
+                color: #a1a8b5;
                 text-align: left;
             }
 
             .produk-page-content .table tbody th:first-child {
                 justify-content: flex-start;
-                border-bottom: 1px dashed #f1f5f9;
+                border-bottom: 1px dashed #ececf1;
                 font-weight: 700;
                 color: #4f46e5;
             }
@@ -402,8 +401,8 @@
             }
 
             .produk-thumb {
-                width: 48px;
-                height: 48px;
+                width: 40px;
+                height: 40px;
             }
 
             .action-group {
@@ -483,7 +482,7 @@
                         <th scope="col">Foto</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis</th>
-                        <th scope="col">Harga Beli</th>
+                        <th scope="col">Harga Pokok</th>
                         <th scope="col">Harga Jual</th>
                         <th scope="col">Stok</th>
                         <th scope="col">User</th>
@@ -506,7 +505,8 @@
                                     <span class="jenis-kosong">-</span>
                                 @endif
                             </td>
-                            <td data-label="Harga Beli" class="harga-beli">Rp {{ number_format($product->harga_beli) }}</td>
+                            <td data-label="Harga Beli" class="harga-beli">Rp {{ number_format($product->harga_beli) }}
+                            </td>
                             <td data-label="Harga Jual" class="harga-jual">Rp {{ number_format($product->harga_jual) }}
                             </td>
                             <td data-label="Stok"><span class="stok-badge">{{ $product->stok }}</span></td>
@@ -517,15 +517,17 @@
                                         <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-warning">Edit</a>
                                     @endcan
                                     @can('delete', $product)
-                                        <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline"
+                                            data-confirm="Apakah anda yakin menghapus produk ini?" data-confirm-color="#b91c1c">
+                                            <!-- Menambahkan warna merah di sini -->
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Apakah anda yakin menghapus produk ini?')">
+                                            <button class="btn btn-sm btn-danger">
                                                 Hapus
                                             </button>
                                         </form>
                                     @endcan
+
                                 </div>
                             </td>
                         </tr>

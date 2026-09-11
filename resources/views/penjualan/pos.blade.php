@@ -3,512 +3,512 @@
 @section('title', 'POS')
 
 @push('styles')
-        <style>
-            body {
-                background-color: #f8fafc;
-            }
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
 
+        .pos-page-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
+        }
+
+        .pos-page-content .alert-danger {
+            background-color: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.85rem 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pos-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.25rem;
+        }
+
+        .pos-page-content .card {
+            border: 1px solid #eef0f4;
+            border-radius: 14px;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+            overflow: hidden;
+        }
+
+        .produk-panel-header {
+            padding: 0.9rem 1rem 0;
+        }
+
+        .produk-panel-header .form-control {
+            font-size: 0.85rem;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            padding: 0.6rem 0.9rem 0.6rem 2.2rem;
+            border-radius: 8px;
+        }
+
+        .produk-search-wrap {
+            position: relative;
+        }
+
+        .produk-search-wrap i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .produk-panel-header .form-control:focus {
+            border-color: #4f46e5;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px #eef2ff;
+        }
+
+        .produk-list {
+            max-height: 65vh;
+            overflow-y: auto;
+            padding: 0.75rem 1rem 1rem;
+        }
+
+        .produk-item-form {
+            display: flex;
+            gap: 0.5rem;
+            align-items: stretch;
+            margin-bottom: 0.6rem;
+        }
+
+        .produk-item-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            text-align: left;
+            padding: 0.55rem 0.75rem;
+            border: 1px solid #eef0f4;
+            background-color: #ffffff;
+            border-radius: 10px;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
+        }
+
+        .produk-item-btn:hover:not(.disabled) {
+            border-color: #4f46e5;
+            background-color: #f5f5ff;
+        }
+
+        .produk-item-btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .produk-item-thumb {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid #eef0f4;
+        }
+
+        .produk-item-nama {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .produk-item-harga {
+            font-size: 0.76rem;
+            color: #64748b;
+        }
+
+        .produk-item-qty {
+            width: 64px;
+            flex-shrink: 0;
+        }
+
+        .produk-item-qty .form-control {
+            height: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 0.4rem;
+        }
+
+        .produk-item-qty .form-control:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px #eef2ff;
+        }
+
+        .produk-item-add {
+            width: 42px;
+            flex-shrink: 0;
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .produk-item-add:hover {
+            background-color: #4338ca;
+            border-color: #4338ca;
+        }
+
+        .keranjang-header {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #eef0f4;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #64748b;
+        }
+
+        .pos-page-content .table {
+            font-size: 0.83rem;
+            margin-bottom: 0;
+        }
+
+        .pos-page-content .table thead th {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid #eef0f4;
+            padding: 0.65rem 0.85rem;
+        }
+
+        .pos-page-content .table tbody td {
+            padding: 0.6rem 0.85rem;
+            vertical-align: middle;
+            color: #334155;
+            border-bottom: 1px solid #f8fafc;
+        }
+
+        .cart-item-nama {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .cart-item-subtotal {
+            font-weight: 700;
+            color: #4338ca;
+        }
+
+        .cart-qty-input {
+            width: 60px;
+            font-size: 0.82rem;
+            padding: 0.3rem 0.4rem;
+            border-radius: 6px;
+        }
+
+        .cart-item-hapus {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            background-color: transparent;
+            border: 1px solid #dc2626;
+            color: #dc2626;
+        }
+
+        .cart-item-hapus:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+        .cart-empty {
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .cart-empty i {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .keranjang-footer {
+            background-color: #ffffff;
+            border-top: 1px solid #eef0f4;
+            padding: 1.1rem 1.1rem 1.25rem;
+        }
+
+        .keranjang-total-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .keranjang-total-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .keranjang-total-value {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .keranjang-footer .form-select {
+            font-size: 0.85rem;
+            padding: 0.55rem 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            margin-bottom: 0.7rem;
+        }
+
+        .keranjang-footer .form-select:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px #eef2ff;
+        }
+
+        /* ---------- Detail pembayaran (Cash / QRIS) ---------- */
+        .payment-detail {
+            display: none;
+            margin-bottom: 0.9rem;
+            padding: 0.9rem;
+            background-color: #f8fafc;
+            border: 1px solid #eef0f4;
+            border-radius: 10px;
+        }
+
+        .payment-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+        }
+
+        .payment-input {
+            font-size: 0.9rem;
+            padding: 0.55rem 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            margin-bottom: 0.7rem;
+        }
+
+        .payment-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px #eef2ff;
+        }
+
+        .kembalian-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .kembalian-row span:first-child {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        #kembalianValue {
+            font-weight: 800;
+            color: #16a34a;
+            font-size: 1.05rem;
+        }
+
+        #kembalianValue.kembalian-kurang {
+            color: #dc2626;
+        }
+
+        .qrcode-box {
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .qris-amount {
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 0.5rem;
+        }
+
+        .qris-note {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin: 0.6rem 0 0;
+        }
+
+        .btn-checkout {
+            background-color: #16a34a;
+            border-color: #16a34a;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 0.75rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.3);
+            letter-spacing: 0.01em;
+        }
+
+        .btn-checkout:hover:not(.disabled) {
+            background-color: #15803d;
+            border-color: #15803d;
+        }
+
+        .btn-checkout.disabled {
+            opacity: 0.5;
+        }
+
+        .btn-batal {
+            background-color: transparent;
+            border: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.55rem 0;
+            border-radius: 8px;
+            margin-top: 0.6rem;
+        }
+
+        .btn-batal:hover:not(:disabled) {
+            background-color: #fef2f2;
+            border-color: #fecaca;
+            color: #dc2626;
+        }
+
+        @media (max-width: 991.98px) {
             .pos-page-content {
-                max-width: 1300px;
-                margin: 0 auto;
-                padding: 1.5rem 1rem 4rem;
-            }
-
-            .pos-page-content .alert-danger {
-                background-color: #fef2f2;
-                color: #b91c1c;
-                border: 1px solid #fecaca;
-                border-radius: 10px;
-                font-size: 0.875rem;
-                font-weight: 500;
-                padding: 0.85rem 1.1rem;
-                margin-bottom: 1.25rem;
-            }
-
-            .pos-title {
-                font-size: 1.35rem;
-                font-weight: 700;
-                color: #0f172a;
-                letter-spacing: -0.01em;
-                margin-bottom: 1.25rem;
-            }
-
-            .pos-page-content .card {
-                border: 1px solid #eef0f4;
-                border-radius: 14px;
-                box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-                overflow: hidden;
-            }
-
-            .produk-panel-header {
-                padding: 0.9rem 1rem 0;
-            }
-
-            .produk-panel-header .form-control {
-                font-size: 0.85rem;
-                border: 1px solid #e2e8f0;
-                background-color: #f8fafc;
-                padding: 0.6rem 0.9rem 0.6rem 2.2rem;
-                border-radius: 8px;
-            }
-
-            .produk-search-wrap {
-                position: relative;
-            }
-
-            .produk-search-wrap i {
-                position: absolute;
-                left: 0.75rem;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #94a3b8;
-                font-size: 0.85rem;
-            }
-
-            .produk-panel-header .form-control:focus {
-                border-color: #4f46e5;
-                background-color: #ffffff;
-                box-shadow: 0 0 0 3px #eef2ff;
+                padding: 1.25rem 1rem 3rem;
             }
 
             .produk-list {
-                max-height: 65vh;
-                overflow-y: auto;
-                padding: 0.75rem 1rem 1rem;
+                max-height: 50vh;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .pos-page-content {
+                padding: 1rem 0.75rem 3rem;
             }
 
-            .produk-item-form {
-                display: flex;
-                gap: 0.5rem;
-                align-items: stretch;
-                margin-bottom: 0.6rem;
+            .pos-title {
+                font-size: 1.15rem;
             }
 
-            .produk-item-btn {
-                display: flex;
-                align-items: center;
-                gap: 0.65rem;
-                width: 100%;
-                text-align: left;
-                padding: 0.55rem 0.75rem;
-                border: 1px solid #eef0f4;
-                background-color: #ffffff;
-                border-radius: 10px;
-                transition: border-color 0.15s ease, background-color 0.15s ease;
-            }
-
-            .produk-item-btn:hover:not(.disabled) {
-                border-color: #4f46e5;
-                background-color: #f5f5ff;
-            }
-
-            .produk-item-btn.disabled {
-                opacity: 0.5;
-                pointer-events: none;
-            }
-
-            .produk-item-thumb {
-                width: 42px;
-                height: 42px;
-                border-radius: 50%;
-                object-fit: cover;
-                flex-shrink: 0;
-                border: 1px solid #eef0f4;
-            }
-
-            .produk-item-nama {
-                font-size: 0.85rem;
-                font-weight: 600;
-                color: #0f172a;
-                line-height: 1.2;
-            }
-
-            .produk-item-harga {
-                font-size: 0.76rem;
-                color: #64748b;
-            }
-
-            .produk-item-qty {
-                width: 64px;
-                flex-shrink: 0;
-            }
-
-            .produk-item-qty .form-control {
-                height: 100%;
-                text-align: center;
-                font-size: 0.85rem;
-                border: 1px solid #cbd5e1;
-                border-radius: 8px;
-                padding: 0.4rem;
-            }
-
-            .produk-item-qty .form-control:focus {
-                border-color: #4f46e5;
-                box-shadow: 0 0 0 3px #eef2ff;
-            }
-
-            .produk-item-add {
-                width: 42px;
-                flex-shrink: 0;
-                background-color: #4f46e5;
-                border-color: #4f46e5;
-                border-radius: 8px;
-                font-weight: 700;
-            }
-
-            .produk-item-add:hover {
-                background-color: #4338ca;
-                border-color: #4338ca;
-            }
-
-            .keranjang-header {
-                padding: 0.9rem 1rem;
-                border-bottom: 1px solid #eef0f4;
-                font-size: 0.8rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                color: #64748b;
-            }
-
-            .pos-page-content .table {
-                font-size: 0.83rem;
-                margin-bottom: 0;
-            }
-
-            .pos-page-content .table thead th {
-                background-color: #f8fafc;
-                color: #64748b;
-                font-weight: 600;
-                font-size: 0.7rem;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                border-bottom: 1px solid #eef0f4;
-                padding: 0.65rem 0.85rem;
-            }
-
-            .pos-page-content .table tbody td {
-                padding: 0.6rem 0.85rem;
-                vertical-align: middle;
-                color: #334155;
-                border-bottom: 1px solid #f8fafc;
-            }
-
-            .cart-item-nama {
-                font-weight: 600;
-                color: #0f172a;
-            }
-
-            .cart-item-subtotal {
-                font-weight: 700;
-                color: #4338ca;
-            }
-
-            .cart-qty-input {
-                width: 60px;
-                font-size: 0.82rem;
-                padding: 0.3rem 0.4rem;
-                border-radius: 6px;
-            }
-
-            .cart-item-hapus {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.6rem;
-                border-radius: 6px;
-                background-color: transparent;
-                border: 1px solid #dc2626;
-                color: #dc2626;
-            }
-
-            .cart-item-hapus:hover {
-                background-color: #dc2626;
-                color: #ffffff;
-            }
-
-            .cart-empty {
-                padding: 2.5rem 1rem;
-                text-align: center;
-                color: #94a3b8;
-            }
-
-            .cart-empty i {
-                font-size: 1.8rem;
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-
-            .keranjang-footer {
-                background-color: #ffffff;
-                border-top: 1px solid #eef0f4;
-                padding: 1.1rem 1.1rem 1.25rem;
-            }
-
-            .keranjang-total-row {
-                display: flex;
-                align-items: baseline;
-                justify-content: space-between;
+            .row>[class*="col-"] {
                 margin-bottom: 1rem;
             }
 
-            .keranjang-total-label {
-                font-size: 0.78rem;
-                font-weight: 600;
-                color: #94a3b8;
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
+            .row>[class*="col-"]:last-child {
+                margin-bottom: 0;
             }
 
-            .keranjang-total-value {
-                font-size: 1.65rem;
-                font-weight: 800;
-                color: #0f172a;
-                letter-spacing: -0.02em;
+            .produk-list {
+                max-height: 42vh;
             }
 
-            .keranjang-footer .form-select {
-                font-size: 0.85rem;
-                padding: 0.55rem 0.85rem;
-                border: 1px solid #cbd5e1;
-                border-radius: 8px;
-                margin-bottom: 0.7rem;
+            .produk-item-nama {
+                font-size: 0.82rem;
             }
 
-            .keranjang-footer .form-select:focus {
-                border-color: #4f46e5;
-                box-shadow: 0 0 0 3px #eef2ff;
+            .produk-item-harga {
+                font-size: 0.72rem;
             }
 
-            /* ---------- Detail pembayaran (Cash / QRIS) ---------- */
-            .payment-detail {
+            .pos-page-content .table {
+                border: none;
+            }
+
+            .pos-page-content .table thead {
                 display: none;
-                margin-bottom: 0.9rem;
-                padding: 0.9rem;
+            }
+
+            .pos-page-content .table tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+                padding: 0.75rem;
+            }
+
+            .pos-page-content .table tbody tr {
+                display: flex;
+                flex-direction: column;
                 background-color: #f8fafc;
                 border: 1px solid #eef0f4;
                 border-radius: 10px;
+                padding: 0.7rem 0.85rem;
             }
 
-            .payment-label {
-                display: block;
-                font-size: 0.75rem;
+            .pos-page-content .table tbody td {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                padding: 0.3rem 0;
+                border-bottom: 1px dashed #e2e8f0;
+                text-align: right;
+            }
+
+            .pos-page-content .table tbody tr td:last-child {
+                border-bottom: none;
+            }
+
+            .pos-page-content .table tbody td::before {
+                content: attr(data-label);
+                font-size: 0.68rem;
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 0.04em;
                 color: #94a3b8;
-                margin-bottom: 0.4rem;
+                text-align: left;
             }
 
-            .payment-input {
-                font-size: 0.9rem;
-                padding: 0.55rem 0.75rem;
-                border: 1px solid #cbd5e1;
-                border-radius: 8px;
-                margin-bottom: 0.7rem;
-            }
-
-            .payment-input:focus {
-                border-color: #4f46e5;
-                box-shadow: 0 0 0 3px #eef2ff;
-            }
-
-            .kembalian-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-size: 0.9rem;
-            }
-
-            .kembalian-row span:first-child {
-                color: #64748b;
-                font-weight: 600;
-            }
-
-            #kembalianValue {
-                font-weight: 800;
-                color: #16a34a;
-                font-size: 1.05rem;
-            }
-
-            #kembalianValue.kembalian-kurang {
-                color: #dc2626;
-            }
-
-            .qrcode-box {
-                display: flex;
+            .pos-page-content .table tbody td[colspan] {
                 justify-content: center;
-                padding: 0.75rem;
-                background-color: #ffffff;
-                border-radius: 8px;
-            }
-            
-            .qris-amount {
-                text-align: center;
-                font-size: 1.15rem;
-                font-weight: 800;
-                color: #0f172a;
-                margin: 0 0 0.5rem;
             }
 
-            .qris-note {
-                text-align: center;
-                font-size: 0.78rem;
-                color: #94a3b8;
-                margin: 0.6rem 0 0;
+            .pos-page-content .table tbody td[colspan]::before {
+                content: none;
             }
 
-            .btn-checkout {
-                background-color: #16a34a;
-                border-color: #16a34a;
-                font-size: 0.95rem;
-                font-weight: 700;
-                padding: 0.75rem 0;
-                border-radius: 10px;
-                box-shadow: 0 2px 6px rgba(22, 163, 74, 0.3);
-                letter-spacing: 0.01em;
+            .keranjang-total-value {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .produk-item-form {
+                flex-wrap: wrap;
             }
 
-            .btn-checkout:hover:not(.disabled) {
-                background-color: #15803d;
-                border-color: #15803d;
+            .produk-item-btn {
+                width: 100%;
             }
 
-            .btn-checkout.disabled {
-                opacity: 0.5;
+            .produk-item-qty,
+            .produk-item-add {
+                flex: 1;
+                width: auto;
             }
-
-            .btn-batal {
-                background-color: transparent;
-                border: 1px solid #e2e8f0;
-                color: #94a3b8;
-                font-size: 0.8rem;
-                font-weight: 500;
-                padding: 0.55rem 0;
-                border-radius: 8px;
-                margin-top: 0.6rem;
-            }
-
-            .btn-batal:hover:not(:disabled) {
-                background-color: #fef2f2;
-                border-color: #fecaca;
-                color: #dc2626;
-            }
-
-            @media (max-width: 991.98px) {
-                .pos-page-content {
-                    padding: 1.25rem 1rem 3rem;
-                }
-
-                .produk-list {
-                    max-height: 50vh;
-                }
-            }
-
-            @media (max-width: 767.98px) {
-                .pos-page-content {
-                    padding: 1rem 0.75rem 3rem;
-                }
-
-                .pos-title {
-                    font-size: 1.15rem;
-                }
-
-                .row>[class*="col-"] {
-                    margin-bottom: 1rem;
-                }
-
-                .row>[class*="col-"]:last-child {
-                    margin-bottom: 0;
-                }
-
-                .produk-list {
-                    max-height: 42vh;
-                }
-
-                .produk-item-nama {
-                    font-size: 0.82rem;
-                }
-
-                .produk-item-harga {
-                    font-size: 0.72rem;
-                }
-
-                .pos-page-content .table {
-                    border: none;
-                }
-
-                .pos-page-content .table thead {
-                    display: none;
-                }
-
-                .pos-page-content .table tbody {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.6rem;
-                    padding: 0.75rem;
-                }
-
-                .pos-page-content .table tbody tr {
-                    display: flex;
-                    flex-direction: column;
-                    background-color: #f8fafc;
-                    border: 1px solid #eef0f4;
-                    border-radius: 10px;
-                    padding: 0.7rem 0.85rem;
-                }
-
-                .pos-page-content .table tbody td {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 0.75rem;
-                    padding: 0.3rem 0;
-                    border-bottom: 1px dashed #e2e8f0;
-                    text-align: right;
-                }
-
-                .pos-page-content .table tbody tr td:last-child {
-                    border-bottom: none;
-                }
-
-                .pos-page-content .table tbody td::before {
-                    content: attr(data-label);
-                    font-size: 0.68rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.04em;
-                    color: #94a3b8;
-                    text-align: left;
-                }
-
-                .pos-page-content .table tbody td[colspan] {
-                    justify-content: center;
-                }
-
-                .pos-page-content .table tbody td[colspan]::before {
-                    content: none;
-                }
-
-                .keranjang-total-value {
-                    font-size: 1.4rem;
-                }
-            }
-
-            @media (max-width: 400px) {
-                .produk-item-form {
-                    flex-wrap: wrap;
-                }
-
-                .produk-item-btn {
-                    width: 100%;
-                }
-
-                .produk-item-qty,
-                .produk-item-add {
-                    flex: 1;
-                    width: auto;
-                }
-            }
-        </style>
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -627,7 +627,7 @@
                         </div>
 
                         <form method="POST" action="{{ route('penjualan.update', $sale->id) }}" id="checkoutForm"
-                            onsubmit="return confirm('Yakin ingin checkout?')">
+                            data-confirm="Yakin ingin checkout?">
                             @csrf
                             @method('PUT')
 
@@ -637,9 +637,9 @@
                                 <option value="QRIS">QRIS</option>
                             </select>
 
-                            {{-- Input Jumlah Bayar + Kembalian, khusus CASH --}}
+                            {{-- Input Uang Masuk + Kembalian, khusus CASH --}}
                             <div class="payment-detail" id="cashPaymentBox">
-                                <label class="payment-label">Jumlah Bayar</label>
+                                <label class="payment-label">Uang Masuk</label>
                                 <input type="number" name="uang_bayar" id="uangBayarInput"
                                     class="form-control payment-input" placeholder="Masukkan jumlah uang" min="0">
                                 <div class="kembalian-row">
@@ -662,14 +662,17 @@
 
                         @can('delete', $sale)
                             <form method="POST" action="{{ route('penjualan.destroy', $sale->id) }}"
-                                onsubmit="return confirm('Yakin ingin membatalkan transaksi')">
+                                data-confirm="Yakin ingin membatalkan transaksi?" data-confirm-color="#b91c1c">
+                                <!-- Menambahkan warna merah untuk konfirmasi pembatalan -->
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-batal w-100" {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}>
+                                <button type="submit" class="btn btn-batal w-100"
+                                    {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}>
                                     Batal Transaksi
                                 </button>
                             </form>
                         @endcan
+
                     </div>
                 </div>
             </div>
@@ -699,7 +702,7 @@
             kembalianValue.classList.toggle('kembalian-kurang', bayar < totalPembayaran);
         }
 
-        paymentSelect.addEventListener('change', function () {
+        paymentSelect.addEventListener('change', function() {
             cashBox.style.display = 'none';
             qrisBox.style.display = 'none';
             uangBayarInput.removeAttribute('required');
@@ -724,7 +727,7 @@
 
         uangBayarInput.addEventListener('input', hitungKembalian);
 
-        document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
             if (paymentSelect.value === 'CASH') {
                 const bayar = parseInt(uangBayarInput.value) || 0;
                 if (bayar < totalPembayaran) {

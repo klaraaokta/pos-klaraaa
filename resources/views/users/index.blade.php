@@ -9,21 +9,21 @@
         }
 
         .users-page-content {
-            max-width: 1200px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 2rem 1rem 4rem;
+            padding: 1.5rem 1rem 3rem;
         }
 
         .users-header {
             display: flex;
             align-items: baseline;
             gap: 0.6rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #0f172a;
             letter-spacing: -0.01em;
@@ -31,9 +31,9 @@
         }
 
         .users-count {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            color: #94a3b8;
+            color: #8891a0;
         }
 
         .users-toolbar {
@@ -41,18 +41,18 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
         }
 
         .users-toolbar .btn-primary {
             background-color: #4f46e5;
             border-color: #4f46e5;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            padding: 0.55rem 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(79, 70, 229, 0.25);
+            padding: 0.5rem 1.1rem;
+            border-radius: 7px;
+            box-shadow: 0 1px 2px rgba(79, 70, 229, 0.2);
             order: 2;
         }
 
@@ -64,15 +64,15 @@
         .users-search {
             flex: 1;
             min-width: 220px;
-            max-width: 340px;
+            max-width: 320px;
             order: 1;
         }
 
         .users-search .form-control {
-            font-size: 0.82rem;
-            border: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            border: 1px solid #e5e7eb;
             background-color: #f8fafc;
-            padding: 0.5rem 0.85rem;
+            padding: 0.45rem 0.8rem;
         }
 
         .users-search .form-control:focus {
@@ -82,10 +82,10 @@
         }
 
         .users-search .btn-outline-secondary {
-            font-size: 0.82rem;
-            border-color: #e2e8f0;
+            font-size: 0.8rem;
+            border-color: #e5e7eb;
             background-color: #f8fafc;
-            color: #94a3b8;
+            color: #8891a0;
         }
 
         .users-search .btn-outline-secondary:hover {
@@ -95,8 +95,8 @@
         }
 
         .users-page-content .table-responsive {
-            border: 1px solid #eef0f4;
-            border-radius: 12px;
+            border: 1px solid #ececf1;
+            border-radius: 10px;
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
@@ -105,29 +105,29 @@
         }
 
         .users-page-content .table {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             margin-bottom: 0;
         }
 
         .users-page-content .table thead th {
-            background-color: #f8fafc;
-            color: #64748b;
+            background-color: #4f46e5;
+            color: #ffffff;
             font-weight: 600;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            border-bottom: 1px solid #eef0f4;
-            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #4f46e5;
+            padding: 0.65rem 0.85rem;
             white-space: nowrap;
         }
 
         .users-page-content .table thead th:first-child {
-            width: 48px;
-            color: #cbd5e1;
+            width: 44px;
+            color: #e0e7ff;
         }
 
         .users-page-content .table tbody td {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.85rem;
             vertical-align: middle;
             color: #334155;
             border-bottom: 1px solid #f8fafc;
@@ -143,7 +143,7 @@
 
         .users-page-content .table tbody td:first-child {
             color: #cbd5e1;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
         }
 
         .user-name {
@@ -152,15 +152,15 @@
         }
 
         .user-email {
-            color: #94a3b8;
-            font-size: 0.82rem;
+            color: #8891a0;
+            font-size: 0.8rem;
         }
 
         .role-badge {
             display: inline-block;
-            padding: 0.2rem 0.65rem;
+            padding: 0.18rem 0.6rem;
             border-radius: 999px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             background-color: #eef2ff;
             color: #4338ca;
@@ -168,7 +168,7 @@
 
         .action-group {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.35rem;
             flex-wrap: wrap;
         }
 
@@ -176,6 +176,9 @@
             background-color: transparent;
             border-color: #f59e0b;
             color: #b45309;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
         }
 
         .action-group .btn-warning:hover {
@@ -187,6 +190,9 @@
             background-color: transparent;
             border-color: #dc2626;
             color: #dc2626;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
         }
 
         .action-group .btn-danger:hover {
@@ -196,17 +202,13 @@
 
         @media (max-width: 991.98px) {
             .users-page-content {
-                padding: 1.5rem 1rem 3rem;
+                padding: 1.25rem 1rem 2.5rem;
             }
         }
 
         @media (max-width: 767.98px) {
             .users-page-content {
-                padding: 1.25rem 0.85rem 3rem;
-            }
-
-            .page-title {
-                font-size: 1.2rem;
+                padding: 1rem 0.85rem 2.5rem;
             }
 
             .users-toolbar {
@@ -234,7 +236,7 @@
 
             .users-page-content .table {
                 border: none;
-                font-size: 0.85rem;
+                font-size: 0.82rem;
             }
 
             .users-page-content .table thead {
@@ -244,26 +246,26 @@
             .users-page-content .table tbody {
                 display: flex;
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 0.6rem;
             }
 
             .users-page-content .table tbody tr {
                 display: flex;
                 flex-direction: column;
                 background-color: #ffffff;
-                border: 1px solid #eef0f4;
-                border-radius: 12px;
+                border: 1px solid #ececf1;
+                border-radius: 10px;
                 box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-                padding: 0.9rem 1rem;
+                padding: 0.75rem 0.85rem;
             }
 
             .users-page-content .table tbody td {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 0.75rem;
-                padding: 0.4rem 0;
-                border-bottom: 1px dashed #f1f5f9;
+                gap: 0.6rem;
+                padding: 0.3rem 0;
+                border-bottom: 1px dashed #ececf1;
                 text-align: right;
             }
 
@@ -273,11 +275,9 @@
 
             .users-page-content .table tbody td::before {
                 content: attr(data-label);
-                font-size: 0.7rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                color: #94a3b8;
+                font-size: 0.66rem;
+                font-weight: 600;
+                color: #a1a8b5;
                 text-align: left;
             }
 
@@ -343,7 +343,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
@@ -361,14 +361,14 @@
                                 <div class="action-group">
                                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-warning">Edit
                                         Akun</a>
-                                    <form action="{{ route('admin.users.destroy', $user) }}" method="post"
-                                        class="d-inline">
+                                    <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="d-inline"
+                                        data-confirm="Yakin hapus user ini?" data-confirm-color="#b91c1c">
                                         @csrf @method('DELETE')
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin hapus user ini?')">
+                                        <button class="btn btn-sm btn-danger">
                                             Hapus
                                         </button>
                                     </form>
+
                                 </div>
                             </td>
                         </tr>
